@@ -165,6 +165,117 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Oracle学习笔记-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/">Oracle学习笔记-04</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/" class="archive-article-date">
+  	<time datetime="2021-07-30T14:24:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>今天遇到一个问题，在一张组织表中，有公司的所有部门。部门分为父子两级，部门id和superid(父部门id)。</p>
+<p>查出一个部门的所有子部门。</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>一开始就想到了递归的算法。最近也是刚学习PLSQL，感觉用查询语句很难，因为不知到树的深度，你不知道要嵌套几层查询。所以我想到了用存储过程和游标。游标进行结果集的遍历，嵌套循环遍历。因为游标还有%found属性判断结果集是否为空。但是，此条路没有走通（有时间继续研究）。</p>
+<h1 id="新知识"><a href="#新知识" class="headerlink" title="新知识"></a>新知识</h1><p><strong>star with connect by prior</strong></p>
+<p> 这个子句主要是用于B树结构类型的数据递归查询，给出B树结构类型中的任意一个结点，遍历其最终父结点或者子结点。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--查询组织表orgid &#x3D; 978 的所有子部门</span><br><span class="line">select t1.orgid, --组织id</span><br><span class="line">         t1.superid, --父组织id</span><br><span class="line">         t1.orgname, --组织名</span><br><span class="line">         t1.orgtype, --组织类型</span><br><span class="line">    from cpcorg t1</span><br><span class="line">   start with t1.orgid &#x3D; 978</span><br><span class="line">  connect by superid &#x3D; prior orgid</span><br><span class="line">   order by orgtype</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p> start with 子句：遍历起始条件，有个小技巧，如果要查父结点，这里可以用子结点的列，反之亦然。 </p>
+</li>
+<li><p>connect by 子句：连接条件。关键词prior，prior跟父节点列parentid放在一起，就是往父结点方向遍历；prior跟子结点列subid放在一起，则往叶子结点方向遍历， parentid、subid两列谁放在“=”前都无所谓，关键是prior跟谁在一起。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Oracle学习笔记-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
