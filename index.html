@@ -329,7 +329,53 @@
 <h2 id="2021-08-03"><a href="#2021-08-03" class="headerlink" title="2021-08-03"></a>2021-08-03</h2><ol>
 <li>安装FineReport软件</li>
 <li>学习FineReport帮助文档</li>
-<li>根据文档练习简单报表的制作</li>
+<li>了解FineReport软件的操作和报表的制作流程</li>
+</ol>
+<h2 id="2021-08-04"><a href="#2021-08-04" class="headerlink" title="2021-08-04"></a>2021-08-04</h2><ol>
+<li><p>了解数据集</p>
+</li>
+<li><p>连接单元格属性（单元格元素、扩展等）</p>
+</li>
+<li><p>父子格概念</p>
+<ul>
+<li>父子格：用来描述父格与子格关系，父格是指对子格有牵引作用的单元格</li>
+<li>关系：<strong>子格的扩展属性会随着父格的扩展属性变化</strong>，主要包括<strong>过滤</strong>关系和<strong>跟随</strong>关系</li>
+</ul>
+<p>当单元格左侧或上方相邻的单元格具有扩展属性时，单元格默认其左侧相邻单元格为其左父格，默认上方相邻的单元格为其上父格</p>
+</li>
+<li><p>列表、分组、汇总概念的理解</p>
+</li>
+<li><p>SALES_BASIC练习，体会扩展、父子格、分组、汇总</p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/SALES_BASIC%E7%BB%83%E4%B9%A0.png"></p>
+</li>
+<li><p>多源报表练习</p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%A4%9A%E6%BA%90%E6%8A%A5%E8%A1%A8%E7%BB%83%E4%B9%A0.png"></p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>上部分是供应商信息（供应商数据集）、下面是供应商的产品信息（供应商产品数据集）</p>
+</li>
+<li><p>根据供应商产生分页效果（A1设置单元格行前分页）</p>
+</li>
+<li><p>根据供应商生成重复的表头（如A1、A3、C3、A5-E5、A7）：所有的字段都以供应商字段（B3）为左父格），下面的表又默认以产品类型（A6）为父格，所以下面的信息只需要设置产品类型的父格（B6-E6默认跟随A6）</p>
+</li>
+<li><p>产品类型字段要过滤与供应商关联（供应商产品数据集的供应商字段=供应商数据集的供应商字段）</p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%A4%9A%E6%BA%90%E6%8A%A5%E8%A1%A8%E7%BB%83%E4%B9%A0_result.png"></p>
+</li>
+</ol>
+</li>
+<li><p>设计途中遇到的两个问题</p>
+<ul>
+<li><p>设计的报表有时会分裂</p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg1.png"></p>
+<p>如图点击箭头的地方，蓝色框框要是选中我们的报表模板，红色圈住的地方是之前编辑过留下的格式他会占据报表的格式，所以最终会显示出错。只需要把报表模板以外的单元格右键清除全部即可</p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg2.png"></p>
+</li>
+<li><p>在设置模板参数时，参数的名字要和sql语句中的参数对应。</p>
+<p>cno要与sql里的参数cno对应</p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg4.png"></p>
+<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg3.png"></p>
+</li>
+</ul>
+</li>
 </ol>
 
       
@@ -1492,6 +1538,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">BI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">FineReport</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">报表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
@@ -1517,18 +1575,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">BI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">FineReport</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">报表</a>
               </li>
             
             <div class="clearfix"></div>
