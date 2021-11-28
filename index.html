@@ -165,6 +165,126 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-关于搭建Centos8的一些事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">关于搭建Centos8的一些事</a>
+    </h1>
+  
+
+        
+        <a href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" class="archive-article-date">
+  	<time datetime="2021-11-28T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关于搭建Centos8的一些事"><a href="#关于搭建Centos8的一些事" class="headerlink" title="关于搭建Centos8的一些事"></a>关于搭建Centos8的一些事</h2><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近打算学习一下Hadoop，所以在VM虚拟机上安装Centos8</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>安装系统没什么难度，但是如何规范、统一的管理是比较有价值的。在安装完成后配置的系统的网络IP时出现了主机无法ping通虚拟机，虚拟机可以ping通主机的问题。</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>因为选择NAT模式来设置网络，所以先配置主机的VMnet8网卡驱动如下</p>
+<p><img src="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%5Cimage-20211124112450708.png" alt="image-20211124112450708"></p>
+<p>其次，配置VM虚拟机的设置，</p>
+<p><img src="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%5Cimage-20211124112743541.png" alt="image-20211124112743541"></p>
+<p>最后，配置centos8的网络</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">修改ip  vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static   #原来为DHCP</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">NAME=ens33</span><br><span class="line">UUID=a197d42c-67cd-43ea-a9aa-7a94a057fe42</span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">增加 设置固定ip方便管理</span>  </span><br><span class="line">ipaddr=192.168.10.100</span><br><span class="line">gateway=192.168.10.2</span><br><span class="line">dns1=192.168.10.2</span><br></pre></td></tr></table></figure>
+
+<p>修改centos8主机名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修改主机名称 vim /etc/hosts</span><br><span class="line">192.168.10.100 node1</span><br><span class="line">192.168.10.101 node2</span><br><span class="line">192.168.10.102 node3</span><br></pre></td></tr></table></figure>
+
+<p>这里配置就基本结束了，我去测试的时候发现centos8的ip没有生效，所以自己又手动配置了一下</p>
+<p><img src="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%5Cimage-20211124113422552.png" alt="image-20211124113422552"></p>
+<p>设置完毕，发现主机ping虚拟机ping不通，检查centos8ip和主机vmnet8ip是否配置匹配（要在同一个网段）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">虚拟机ip：</span></span><br><span class="line">ns33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.10.100  netmask 255.255.255.255  broadcast 0.0.0.0</span><br><span class="line">        inet6 fe80::20c:29ff:fe8a:1e58  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 00:0c:29:8a:1e:58  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 325  bytes 45659 (44.5 KiB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 219  bytes 21546 (21.0 KiB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">宿主机ip：</span></span><br><span class="line">以太网适配器 VMware Network Adapter VMnet8:</span><br><span class="line">   连接特定的 DNS 后缀 . . . . . . . :</span><br><span class="line">   本地链接 IPv6 地址. . . . . . . . : fe80::3491:68fd:dd55:307%8</span><br><span class="line">   IPv4 地址 . . . . . . . . . . . . : 192.168.10.1</span><br><span class="line">   子网掩码  . . . . . . . . . . . . : 255.255.255.0</span><br><span class="line">   默认网关. . . . . . . . . . . . . : 192.168.10.2</span><br></pre></td></tr></table></figure>
+
+<p>搞了半天也没找到是啥问题，开始的端口防火墙都试过了毫无作用。最后检查居然是Centos8的子网掩码配置错误了<strong>255.255.255.255</strong> 正确的应该是 255.255.255.0</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>NAT模式下，将VMware Network Adapter VMnet8的IP改为与虚拟机IP同一网段即可。</p>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">查看网卡配置信息 </span><br><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">查看防火墙状态 </span><br><span class="line">firewall-cmd --state</span><br><span class="line">暂时关闭防火墙 </span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">禁止firewall开机启动 </span><br><span class="line">systemctl disable firewalld.service </span><br><span class="line">开启ssh服务 </span><br><span class="line">systemctl enable sshd.service</span><br><span class="line">查看22端口  </span><br><span class="line">netstat -ntpl | grep 22</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">centos8</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Vm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux/centos8//" class="article-tag-list-link color3">centos8</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-kettle入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1477,130 +1597,6 @@
 
 
   
-    <article id="post-Word使用开发者工具之VB宏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/">Word使用开发者工具之VB宏</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/" class="archive-article-date">
-  	<time datetime="2021-05-06T13:55:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-06</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-		
-	<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在写word文档时，常常因为忘记保存导致文档的丢失，所以把文档加入git进行管理，在用户git管理文档的时候不是很方便，每次还要打开bash进行提交，又是常常忘记提交。想起来了word的宏命令，它是vb的脚本，可以执行cmd脚本，自然可以用户vb来自动帮我们执行git命令。</p>
-<h1 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h1><p>在大三上数据库的时候，数据库陈老师，给我们秀了秀他的技术，他说他上课从来不会忘记讲到了第几章第几页，即使是同一个ppt，给不同的班级讲课，他也不会忘记讲到了哪里，更不会搞混班级。因为他的ppt有记忆功能，为每个班级生成了相应的记录。这全部都是他学的第一门语言vb的功劳。（vb这门语言应该没人学了把现在……暴露年纪了）</p>
-<h1 id="就绪"><a href="#就绪" class="headerlink" title="就绪"></a>就绪</h1><p>打开word的开发者工具，有部分同学的word没有开启此功能，如果没有看下面。前提得有文档文件，没有文档创建或者打开一个文档文件。</p>
-<ol>
-<li><p>打开设置，点开选项进入此界面。然后看下图勾选开发工具。</p>
-<p><img src="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/1620310345163.png"></p>
-</li>
-<li><p>点击开发者工具，选择Visual Basic选项，进入下图</p>
-<p><img src="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/1620310596326.png"></p>
-</li>
-<li><p>双击ThisDocument 弹出编辑框</p>
-<p><img src="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/1620310871264.png"></p>
-</li>
-<li><p>接下来就可以开始写代码了，这里的通用可以选择为document，然后右边的申明就会出现很多关于文档的事件，一看里面有一个close事件，这不正是我们需要的需求吗，在关闭时执行git命令即可。</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Document_Close()</span><br><span class="line">    flag = MsgBox(<span class="string">&quot;提交吗？&quot;</span>, vbOKCancel)</span><br><span class="line">    <span class="keyword">If</span> flag = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">        a = InputBox(<span class="string">&quot;输入提交日志&quot;</span>)</span><br><span class="line">        <span class="keyword">If</span> StrPtr(a) = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">            <span class="keyword">Return</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        wordname = <span class="string">&quot; &quot;</span> + Application.ActiveWindow.Document.Name + <span class="string">&quot; &quot;</span></span><br><span class="line">        P = ThisDocument.Path + <span class="string">&quot;\start.bat &quot;</span> + ThisDocument.Path + wordname + a</span><br><span class="line">        Shell (P)</span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
-
-<p>先上代码再关闭word时执行此函数，程序很简单就是在关闭的时候执行弹框，判断用户是否提交到git，提交的话让他输入此次的提交信息，否侧直接退出。</p>
-<p>几个重要的变量</p>
-<ol>
-<li>wordname：获取word文档的名字，在git提交时我们必须有文件名才能提交，文件名的获取很简单，我们脚本的名字和word的名字是关联的，Application.ActiveWindow.Document.Name可以获取word的名字。</li>
-<li>当前文件路径：ThisDocument.Path，可以获取当前文件的路径，在git提交时必须进入git仓库所在的目录才能对我们的文档进行版本控制。</li>
-<li>提交日志信息：a变量为输入框的接收对象，接受我们提交文件的日志信息，也是提交文件必不可少的参数。</li>
-</ol>
-<p>有了文件的名字、目录和文件提交日志信息，要想提交该文件就不难了，cd到文件目录，然后使用git commit 就可以提交了。</p>
-</li>
-</ol>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>有了上面的即可参数，直接使用vb的shell() 函数就可以提交了？由于没有写过vb，想着直接两次shell命令就可以提交了，但是出现了错我，因为，要先cd到目录，在执行提交命令，这要使用两次shell()函数，每次执行shell函数都会重新执行一个cmd窗口，所以导致命令出错。</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>既然每次都会重新打开一个cmd命令，第一时间想到了批处理，连续的执行命令。其实也就两条命令，上脚本。</p>
-<p>创建一个名字和vb程序对应的bat文件，我这里名为start.bat。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">setlocal</span><br><span class="line"><span class="built_in">cd</span> %1</span><br><span class="line">git commit %2 -m %3</span><br></pre></td></tr></table></figure>
-
-<p>%1 %2 %3  是对应的参数    xxx.bat 参数1 参数2 参数3</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>该程序还有待提升，由于vb不熟悉，全靠百度。带了解后一定有更为优雅的方式解决这个问题。以上的解决方案感觉有些笨拙。此外，只有在文件加入仓库后，该程序才会生效。还有bat文件时手动创建的，可以改为用vb自动创建。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VB宏</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Word开发者工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1747,6 +1743,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kettle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">centos8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Vm</a>
               </li>
             
             <div class="clearfix"></div>
