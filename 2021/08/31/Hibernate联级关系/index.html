@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fwq7.github.io">
-  <title>Hello World | Study7</title>
+  <title>Hibernate联级关系 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Hibernate联级关系1.多对一这里有用户表和用户类型表，一个用户类型下有多个用户，一个用户只属于一个类型，所以对于用户表和用户类型表来说，就是多对一的关系。 用户对应的实体类1234567891011121314package com.fwq.entity;import lombok.Data;&#x2F;** * @author fwq * @date 2022年08月30日20:50 *&#x2F;@Dat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://fwq7.github.io/2021/05/03/hello-world/index.html">
+<meta property="og:title" content="Hibernate联级关系">
+<meta property="og:url" content="https://fwq7.github.io/2021/08/31/Hibernate%E8%81%94%E7%BA%A7%E5%85%B3%E7%B3%BB/index.html">
 <meta property="og:site_name" content="Study7">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Hibernate联级关系1.多对一这里有用户表和用户类型表，一个用户类型下有多个用户，一个用户只属于一个类型，所以对于用户表和用户类型表来说，就是多对一的关系。 用户对应的实体类1234567891011121314package com.fwq.entity;import lombok.Data;&#x2F;** * @author fwq * @date 2022年08月30日20:50 *&#x2F;@Dat">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-03T03:18:28.588Z">
-<meta property="article:modified_time" content="2021-05-03T03:18:28.588Z">
+<meta property="article:published_time" content="2021-08-31T15:47:29.000Z">
+<meta property="article:modified_time" content="2022-08-31T15:48:32.411Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="java">
+<meta property="article:tag" content="hibernate">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
@@ -165,20 +166,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Hibernate联级关系" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      Hibernate联级关系
     </h1>
   
 
         
-        <a href="/2021/05/03/hello-world/" class="archive-article-date">
-  	<time datetime="2021-05-03T03:18:28.588Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-03</time>
+        <a href="/2021/08/31/Hibernate%E8%81%94%E7%BA%A7%E5%85%B3%E7%B3%BB/" class="archive-article-date">
+  	<time datetime="2021-08-31T15:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-31</time>
 </a>
         
       </header>
@@ -188,19 +189,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="Hibernate联级关系"><a href="#Hibernate联级关系" class="headerlink" title="Hibernate联级关系"></a>Hibernate联级关系</h1><h2 id="1-多对一"><a href="#1-多对一" class="headerlink" title="1.多对一"></a>1.多对一</h2><p>这里有用户表和用户类型表，一个用户类型下有多个用户，一个用户只属于一个类型，所以对于用户表和用户类型表来说，就是多对一的关系。</p>
+<h3 id="用户对应的实体类"><a href="#用户对应的实体类" class="headerlink" title="用户对应的实体类"></a>用户对应的实体类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.fwq.entity;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年08月30日20:50</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Cust_Type cust_type;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<span id="more"></span> 
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="用户类型实体类"><a href="#用户类型实体类" class="headerlink" title="用户类型实体类"></a>用户类型实体类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.fwq.entity;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年08月31日21:05</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cust_Type</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="配置用户实体类映射文件"><a href="#配置用户实体类映射文件" class="headerlink" title="配置用户实体类映射文件"></a>配置用户实体类映射文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-mapping</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">&quot;com.fwq.entity.Customer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.Integer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">&quot;identity&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">generator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">         <span class="comment">&lt;!--这里用户与用户类型是多对一关系 使用 many-to-noe colum就是所谓的外键列 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">many-to-one</span> <span class="attr">name</span>=<span class="string">&quot;cust_type&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.fwq.entity.Cust_Type&quot;</span> <span class="attr">column</span>=<span class="string">&quot;cust_type&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">many-to-one</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="配置用户类型实体类映射文件"><a href="#配置用户类型实体类映射文件" class="headerlink" title="配置用户类型实体类映射文件"></a>配置用户类型实体类映射文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-mapping</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">&quot;com.fwq.entity.Cust_Type&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.Integer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">&quot;identity&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">generator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="加入主配置"><a href="#加入主配置" class="headerlink" title="加入主配置"></a>加入主配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">&quot;com/fwq/entity/Customer.hbm.xml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">&quot;com/fwq/entity/Cust_Type.hbm.xml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编写测试类"><a href="#编写测试类" class="headerlink" title="编写测试类"></a>编写测试类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.fwq.entity.Cust_Type;</span><br><span class="line"><span class="keyword">import</span> com.fwq.entity.Customer;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Session;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.SessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.cfg.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Hibernate 多对一测试</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年08月31日21:17</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration().configure();</span><br><span class="line">        SessionFactory sessionFactory = configuration.buildSessionFactory();</span><br><span class="line">        Session session = sessionFactory.openSession();</span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">        customer.setName(<span class="string">&quot;张三6&quot;</span>);</span><br><span class="line">        Cust_Type cust_type = <span class="keyword">new</span> Cust_Type();</span><br><span class="line">        cust_type.setName(<span class="string">&quot;工人2&quot;</span>);</span><br><span class="line">        <span class="comment">// 多对一关系</span></span><br><span class="line">        customer.setCust_type(cust_type);</span><br><span class="line">		</span><br><span class="line">        session.save(customer);</span><br><span class="line">        session.save(cust_type);</span><br><span class="line">        session.beginTransaction().commit();</span><br><span class="line">        session.close();</span><br><span class="line">        System.out.println(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">insert</span> </span><br><span class="line">    <span class="keyword">into</span></span><br><span class="line">        Customer</span><br><span class="line">        (name, cust_type) </span><br><span class="line">    <span class="keyword">values</span></span><br><span class="line">        (?, ?)</span><br><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">insert</span> </span><br><span class="line">    <span class="keyword">into</span></span><br><span class="line">        Cust_Type</span><br><span class="line">        (name) </span><br><span class="line">    <span class="keyword">values</span></span><br><span class="line">        (?)</span><br><span class="line">Hibernate: </span><br><span class="line">    update</span><br><span class="line">        Customer </span><br><span class="line">    <span class="keyword">set</span></span><br><span class="line">        name<span class="operator">=</span>?,</span><br><span class="line">        cust_type<span class="operator">=</span>? </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        id<span class="operator">=</span>?</span><br><span class="line"><span class="comment">--1.</span></span><br><span class="line"><span class="comment">--可以看到上面的代码执行了三条sql语句</span></span><br><span class="line"><span class="comment">--首先分别在用户表和用户类型表插入了我们创建的对象，然后再去用户表中更新了用户类型字段的值</span></span><br><span class="line"><span class="comment">--2.如果注释掉customer.setCust_type(cust_type);这条关联赋值语句</span></span><br><span class="line"><span class="comment">--	那么将会执行前两条sql语句，所以用户表的cust_type是null</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="疑问？"><a href="#疑问？" class="headerlink" title="疑问？"></a>疑问？</h3><ol>
+<li>级联后用户表和用户类型表数据操作保持一致性，那我需要插入一条新的用户但是是老的用户类型时该怎么办？</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>和mybatis相比hibernate对数据库的屏蔽更强了，它把关系模型全部映射成了对象的关系，操作对象就可以操作数据表，mybaits更倾向于把结果集映射成对象，这也就是半自动和全自动的原因</li>
+</ol>
 
       
 
@@ -230,7 +241,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/hibernate//" class="article-tag-list-link color5">hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -280,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://fwq7.github.io/2021/05/03/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://fwq7.github.io/2021/08/31/Hibernate%E8%81%94%E7%BA%A7%E5%85%B3%E7%B3%BB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,15 +331,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/05/06/Word%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B9%8BVB%E5%AE%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/09/12/kettle%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Word使用开发者工具之VB宏
+          kettle入门
         
       </div>
     </a>
   
+  
+    <a href="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BI-FineReport入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
