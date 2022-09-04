@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fwq7.github.io">
-  <title>Hibernate联级关系 | Study7</title>
+  <title>Hibernate延迟加载 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Hibernate延迟加载1.作用使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。 在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。 延迟加载：当我们查询客户信息，没有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hibernate联级关系">
+<meta property="og:title" content="Hibernate延迟加载">
 <meta property="og:url" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/index.html">
 <meta property="og:site_name" content="Study7">
 <meta property="og:description" content="Hibernate延迟加载1.作用使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。 在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。 延迟加载：当我们查询客户信息，没有">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png">
 <meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png">
 <meta property="article:published_time" content="2022-09-04T14:47:29.000Z">
-<meta property="article:modified_time" content="2022-09-04T13:45:27.766Z">
+<meta property="article:modified_time" content="2022-09-04T13:52:17.025Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="hibernate">
@@ -177,7 +177,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hibernate联级关系
+      Hibernate延迟加载
     </h1>
   
 
