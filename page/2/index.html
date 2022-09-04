@@ -165,6 +165,157 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Oracle学习笔记-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/27/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Oracle学习笔记-01</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/27/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/" class="archive-article-date">
+  	<time datetime="2021-07-27T14:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-27</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="oracle系统进入（使用的docker镜像）"><a href="#oracle系统进入（使用的docker镜像）" class="headerlink" title="oracle系统进入（使用的docker镜像）"></a>oracle系统进入（使用的docker镜像）</h2><ol>
+<li>切换用户 su - oracle</li>
+<li>连接 sqlplus / as sysdba</li>
+</ol>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>mysql和oracle的区别</p>
+<ol>
+<li>对于事务提交，mysql默认自动提交，而oracle需要手动提交。</li>
+<li>分页查询，mysql使用的是limit关键字，oracle使用rownum关键字</li>
+<li>数据层次结构，mysql默认用户是root，用户可以创建多个数据库，每个数据库下创建多张表。oracle，创建一个数据库，数据库下分为很多用户，不同的用户下有很多表。也就是说：mysql是多数据库，oracle是多用户。</li>
+</ol>
+<p>SQL（结构化查询语句分类）</p>
+<ol>
+<li>DDL（数据定义语言）create alter drop truncate</li>
+<li>DML（数据操纵语言）insert update delete</li>
+<li>DCL（数据控制语言）安全和授权相关 grant revoke</li>
+<li>DQL（数据查询语言）select from子句 where子句</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="number">1</span><span class="operator">+</span><span class="number">1</span>; <span class="comment">--在oracle中会报错，from关键字缺失，在mysql中输出结果是2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="number">1</span><span class="operator">+</span><span class="number">1</span> <span class="keyword">from</span> dual; <span class="comment">--dual在oracle中是虚表、伪表，主要是用来补齐语法结构</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sal<span class="operator">*</span><span class="number">12</span><span class="operator">+</span>comm <span class="keyword">from</span> emp; <span class="comment">-- 查询员工的年薪 年工资+奖金</span></span><br><span class="line"><span class="comment">-- 问题：在员工奖金为空时，参与运算后结果也为空</span></span><br><span class="line"><span class="comment">-- 解决：nvl函数 nvl(参数一，参数二) 如果参数一为null，就返回参数2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 字符串拼接</span></span><br><span class="line"><span class="comment">-- 在mysql中使用concat()函数，oracle中使用||和concat进行拼接。</span></span><br><span class="line"><span class="keyword">select</span> ename <span class="keyword">from</span> emp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;姓名:&#x27;</span><span class="operator">||</span>ENAME <span class="keyword">from</span> emp; <span class="comment">-- &quot;&quot;用于列名的别名，‘’用于值</span></span><br><span class="line"><span class="keyword">SELECT</span> CONCAT(<span class="string">&#x27;姓名:&#x27;</span>,ENAME) <span class="keyword">from</span> emp;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><pre><code>关系运算符：&gt; &gt;= = &lt; &lt;= != &lt;&gt; 
+
+逻辑运算符：and or not
+
+其他运算符：
+
+    like模糊查询
+
+    in()在某个集合内
+
+    between ... and ... 在某个区间内 
+
+    is not null 判断不为空
+</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询员工姓名第三个字母是O的员工信息</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ENAME <span class="keyword">like</span> <span class="string">&#x27;__O%&#x27;</span>;</span><br><span class="line"><span class="comment">-- % 匹配多个字符  _ 匹配单个字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--查询员工姓名中包含%的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> EMP <span class="keyword">where</span> ENAME <span class="keyword">like</span> <span class="string">&#x27;%#%%&#x27;</span> <span class="keyword">escape</span> <span class="string">&#x27;#&#x27;</span>; <span class="comment">-- escape转义字符标识</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询员工奖金降序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> EMP <span class="keyword">ORDER</span> <span class="keyword">BY</span> COMM <span class="keyword">DESC</span> nulls <span class="keyword">last</span>;</span><br><span class="line"><span class="comment">-- 问题 当出现null值时，它会排在前面  加nulls last 空值会排在后面</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询工资和部门编号，按照部门升序排序，工资降序排序</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li><p>数值函数：ceil()四舍五入、floor()向下取整、round(45.926,2)&gt;45.93保留小数、trunc()    截断、mod()取模。</p>
+</li>
+<li><p>字符函数：substr(str1,起始索引,长度)、length()获取字符串长度、trim()去除字符左右两边空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">select substr(&#39;abcdefg&#39;,0,3) from dual; --abc</span><br><span class="line">select substr(&#39;abcdefg&#39;,1,3) from dual; --abc</span><br><span class="line">-- 注意：起始索引不管是0还是1都是从第一个字符开始</span><br><span class="line"></span><br><span class="line">-- 大小写转换函数</span><br><span class="line">upper(char)   --转换为大写</span><br><span class="line">lower(char)   --转换为小写</span><br><span class="line">initcap(char)  --首字母大写</span><br><span class="line"></span><br><span class="line">-- 获取字符串长度</span><br><span class="line">length(char) --会包含空格的长度</span><br><span class="line"></span><br><span class="line">-- 字符串连接</span><br><span class="line">concat(char1,char2)   --与||作用一样</span><br><span class="line"></span><br><span class="line">-- replace函数</span><br><span class="line">replace(char,s_string[,r_string])  --替换函数，省略第三个参数则用空白替换</span><br><span class="line"></span><br><span class="line">select replace(&#39;abcde&#39;,&#39;a&#39;,&#39;A&#39;) from dual;  -- 用A替换abcde中的a</span><br><span class="line">select replace(&#39;abcde&#39;,&#39;c&#39;) from dual;      -- 用‘’替换abcde中的c</span><br><span class="line">select replace(&#39;abced&#39;,&#39;ab&#39;,&#39;A&#39;) from dual; -- 用A替换abcde中的ab</span><br></pre></td></tr></table></figure></li>
+<li><p>日期换数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-- 获取系统时间 sysdate   默认格式：DD-MON-RR 天-月-年</span><br><span class="line"></span><br><span class="line">-- 日期操作</span><br><span class="line">add_months(date,i)  --用于添加指定的月份，返回在指定的日期上添加的月份，i可以是任意整数，如果i是负数，则是在原有的值上减去该月份了</span><br><span class="line"></span><br><span class="line">next_day(date,char)  --第二个参数指定星期几，在中文环境下输入星期X即可，返回下一个周几是哪一天。</span><br><span class="line"></span><br><span class="line">last_day(date)   --用于返回日期所在月的最后一天</span><br><span class="line"></span><br><span class="line">month_between(date1,date2)  --计算两个日期之间间隔的月份，前者减后者</span><br><span class="line"></span><br><span class="line">extract(date from datetime)   --返回相应的日期部分</span><br><span class="line">select extract(year from sysdate) from dual;   --可以改month或者day</span><br><span class="line">select extract(hour from timestamp &#39;2015-10-1 17:25:13&#39;) from dual;</span><br><span class="line"></span><br><span class="line">-- 日期截取 trunc（字段名，精度）</span><br><span class="line">select trunc(sysdate,&#39;yyyy&#39;) from table1 ;  --yyyy也可用year替换 </span><br><span class="line">select trunc(sysdate,&#39;mm&#39;) from table1</span><br><span class="line">select trunc(sysdate,&#39;dd&#39;) from table1</span><br><span class="line">select trunc(sysdate,&#39;hh&#39;) from table1</span><br><span class="line">select trunc(sysdate,&#39;mi&#39;) from table1</span><br></pre></td></tr></table></figure></li>
+<li><p>转换函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-- 转换日期 日期&gt;字符</span><br><span class="line">to_char(date[,fmt[,params]])  --date为需要转换的日期，fmt为转换的格式，params为转换的语言（通常默认会自动选择，可以省略，与安装语言一致）</span><br><span class="line">默认格式：DD-MON-RR</span><br><span class="line">可以定义的格式：</span><br><span class="line">* YY YYYY YEAR</span><br><span class="line">* MM MONTH</span><br><span class="line">* DD DAY</span><br><span class="line">* HH24 HH12</span><br><span class="line">* MI SS</span><br><span class="line">select to_char(sysdate,&#39;yyyy-mm-dd hh24:mi:ss&#39;) from dual;</span><br><span class="line"></span><br><span class="line">--转换数值  数值&gt;字符</span><br><span class="line">to_char(number[,fmt])</span><br><span class="line">fmt列表：</span><br><span class="line">* 9:显示数字并忽略前面的0</span><br><span class="line">* 0：显示数字，位数不足，用0补齐</span><br><span class="line">* .或D：显示小数点</span><br><span class="line">* ,或G：显示千分位</span><br><span class="line">* $：美元符号</span><br><span class="line">* S：加正负号（前后都可以）</span><br><span class="line">select to_char(12345.678,&#39;$99,999.999&#39;) from dual;</span><br><span class="line">select to_char(12345.678,&#39;s99,999.999&#39;) from dual;</span><br><span class="line"></span><br><span class="line">-- 数值&gt;字符</span><br><span class="line">to_number(char[,fmt])</span><br><span class="line">select to_number(&#39;$1,000&#39;,&#39;$9999&#39;) from dual;</span><br></pre></td></tr></table></figure></li>
+<li><p>常用函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   --instr函数  （俗称：字符查找函数）</span><br><span class="line">   格式一：instr( string1, string2 )    &#x2F;&#x2F; instr(源字符串, 目标字符串)</span><br><span class="line">   格式二：instr( string1, string2 [, start_position [, nth_appearance ] ] )   &#x2F;&#x2F; instr(源字符串, 目标字符串, 起始位置, 匹配序号)</span><br><span class="line">   解析：string2 的值要在string1中查找，是从start_position给出的数值（即：位置）开始在string1检索，检索第nth_appearance（几）次出现string2。</span><br><span class="line">   </span><br><span class="line">   -- 结果6 查找\从第一个\开始，找第二个\的位置</span><br><span class="line">   select instr(&#39;\hehe\hehe\sds\d&#39;, &#39;\&#39;, 1, 2) a from dual </span><br><span class="line">   -------------------------------------------------------------------------------------</span><br><span class="line">   --sys_connect_by_path函数 主要用于树查询(层次查询) 以及 多列转行。其语法一般为：</span><br><span class="line">   -- 通常与start with ... connect by ... prior 树查询语句结合使用</span><br><span class="line">   select ... sys_connect_by_path(column_name,&#39;connect_symbol&#39;)  from table </span><br><span class="line">   start with ... connect by ... prior</span><br><span class="line">   -- 作用：把查询出来的树结构 在一列显示，以connect_symbol为标识进行分割显示</span><br><span class="line">   -----------------------------------------------------------------------------------</span><br><span class="line">   --decode函数</span><br><span class="line">   decode(expr1,expr2,expr3,[expr4])</span><br><span class="line">   1.如果expr1&#x3D;exor2,decode函数返回expr3的值</span><br><span class="line">   2.如果expr1!&#x3D;expr2,decode函数返回expr4表达式的值,如果expr4未指定，则返回null</span><br><span class="line">如</span><br><span class="line">   decode(sign(score-80),1,&#39;良好&#39;,0,&#39;良好&#39;,-1,&#39;及格&#39;)  </span><br><span class="line">   sign()函数的作用是，判断参数的值大于0则返回1，等于0则返回0，小于0则返回-1  </span><br><span class="line">    --------------------------------------------------------------------------------     </span><br><span class="line">   --row_number() over(partition by COL1 order by COL2)</span><br><span class="line">   功能：表示根据COL1分组，在分组内部根据 COL2排序，而这个值就表示每组内部排序后的顺序编号（组内连续的唯一的）row_number() 返回的主要是“行”的信息，并没有排名             </span><br><span class="line">   如</span><br><span class="line">   SELECT ENAME,DEPTNO,EMPNO,ROW_NUMBER() OVER(PARTITION BY DEPTNO ORDER BY EMPNO) FROM SCOTT.EMP;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/07/27/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/Snipaste_2021-08-02_21-55-05.png"></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/27/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Selenium自动化测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

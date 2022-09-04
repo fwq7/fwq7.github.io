@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fwq7.github.io">
-  <title>Archives | Study7</title>
+  <title>Hibernate联级关系 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个个人博客,java，学习，编程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Study7">
-<meta property="og:url" content="https://fwq7.github.io/archives/index.html">
+  <meta name="description" content="Hibernate延迟加载1.作用使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。 在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。 延迟加载：当我们查询客户信息，没有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate联级关系">
+<meta property="og:url" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/index.html">
 <meta property="og:site_name" content="Study7">
-<meta property="og:description" content="这是一个个人博客,java，学习，编程">
+<meta property="og:description" content="Hibernate延迟加载1.作用使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。 在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。 延迟加载：当我们查询客户信息，没有">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png">
+<meta property="article:published_time" content="2022-09-04T14:47:29.000Z">
+<meta property="article:modified_time" content="2022-09-04T13:45:27.766Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="java">
+<meta property="article:tag" content="hibernate">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
   
@@ -163,36 +170,106 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Hibernate延迟加载" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Hibernate联级关系
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/" class="archive-article-date">
+
+        
+        <a href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/" class="archive-article-date">
   	<time datetime="2022-09-04T14:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-04</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/">Hibernate联级关系</a>
-    </h1>
-  
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hibernate延迟加载"><a href="#Hibernate延迟加载" class="headerlink" title="Hibernate延迟加载"></a>Hibernate延迟加载</h1><h2 id="1-作用"><a href="#1-作用" class="headerlink" title="1.作用"></a>1.作用</h2><p>使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。</p>
+<p>在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。</p>
+<p>延迟加载：当我们查询客户信息，没有访问订单信息时，只会生成一条sql，需要访问到订单信息时，则生成两条sql。</p>
+<h2 id="2-使用1对多-演示"><a href="#2-使用1对多-演示" class="headerlink" title="2.使用1对多 演示"></a>2.使用1对多 演示</h2><p>客户型号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.fwq.entity;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年08月31日21:05</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cust_Type</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;Customer&gt; customers;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cust_Type</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;Customer&gt; <span class="title">getCustomers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> customers;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCustomers</span><span class="params">(Set&lt;Customer&gt; customers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.customers = customers;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Cust_Type&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, customers=&quot;</span> + customers +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<p>客户</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.fwq.entity;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年08月30日20:50</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Cust_Type cust_type;</span><br><span class="line">    <span class="keyword">private</span> Set&lt;Product&gt; product;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;Product&gt; <span class="title">getProduct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> product;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProduct</span><span class="params">(Set&lt;Product&gt; product)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.product = product;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Cust_Type <span class="title">getCust_type</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cust_type;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCust_type</span><span class="params">(Cust_Type cust_type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cust_type = cust_type;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Customer&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">                <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, cust_type=&quot;</span> + cust_type +</span><br><span class="line">                <span class="string">&quot;, product=&quot;</span> + product +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置文件设置懒加载</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-mapping</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">&quot;com.fwq.entity.Cust_Type&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.Integer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">&quot;identity&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">generator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">       <span class="comment">&lt;!-- 对应Customer 关联键为Customer.cust_type   --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- lazy=&quot;true&quot; 开启懒加载  默认不写是开启的--&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">&quot;customers&quot;</span> <span class="attr">lazy</span>=<span class="string">&quot;true&quot;</span> <span class="attr">table</span>=<span class="string">&quot;customer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">&quot;cust_type&quot;</span> <span class="attr">not-null</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">&quot;com.fwq.entity.Customer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">one-to-many</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import com.fwq.entity.Cust_Type;</span><br><span class="line">import org.hibernate.Session;</span><br><span class="line">import org.hibernate.SessionFactory;</span><br><span class="line">import org.hibernate.cfg.Configuration;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 懒加载测试</span><br><span class="line"> * @author fwq</span><br><span class="line"> * @date 2022年09月04日20:28</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Test5 &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Configuration configuration &#x3D; new Configuration().configure();</span><br><span class="line">        SessionFactory sessionFactory &#x3D; configuration.buildSessionFactory();</span><br><span class="line">        Session session &#x3D; sessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 使用前面一对多的例子演示 懒加载  客户型号与客户 是一对多关系</span><br><span class="line">        &#x2F;&#x2F; 现在查询出 客户型号是9 的客户型号</span><br><span class="line"></span><br><span class="line">        Cust_Type cust_type &#x3D; session.get(Cust_Type.class, 9);</span><br><span class="line">        System.out.println(cust_type);</span><br><span class="line"></span><br><span class="line">        session.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Bug 出现栈内存溢出问题</p>
+<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png"></p>
+<p>这种问题经过发现是，toString()方法的问题，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Cust_Type类：</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;Cust_Type&#123;&quot;</span> +</span><br><span class="line">               <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">               <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">               <span class="string">&quot;, customers=&quot;</span> + customers +</span><br><span class="line">               <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">Customer类</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;Customer&#123;&quot;</span> +</span><br><span class="line">               <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">               <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">               <span class="string">&quot;, cust_type=&quot;</span> + cust_type +</span><br><span class="line">               <span class="string">&quot;, product=&quot;</span> + product +</span><br><span class="line">               <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+<p>因为Cust_Type和Customer有级联关系，打印cust_type时，里面包含了customer的信息，所以会生成一个Customer对象，然后再去调用Customer的toString方法，同时Customer的toString方法中也有cust_type的信息，此时又会去生成一个Cust_Type对象，所以就形成了死循环导致栈内存溢出了。所以在有级联关系的时候最好不要在toString方法里面包含级联对象信息。</p>
+<p>结果：设置了懒加载后只生成了一条sql语句，访问customer的时候才会生成第二条sql</p>
+<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png"></p>
+<p>关闭懒加载结果：不管怎样都会生成有级联关系的sql</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">&quot;customers&quot;</span> <span class="attr">lazy</span>=<span class="string">&quot;false&quot;</span> <span class="attr">table</span>=<span class="string">&quot;customer&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">&quot;cust_type&quot;</span> <span class="attr">not-null</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">&quot;com.fwq.entity.Customer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">one-to-many</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png"></p>
+<h2 id="3-extra"><a href="#3-extra" class="headerlink" title="3.extra"></a>3.extra</h2><p>lazy除了可以设置ture和false外，还可以设置extra，extra是比true更懒的一种机制。</p>
+<p>true和extra比较</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.fwq.entity.Cust_Type;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Session;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.SessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.cfg.Configuration;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 懒加载测试</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年09月04日20:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration().configure();</span><br><span class="line">        SessionFactory sessionFactory = configuration.buildSessionFactory();</span><br><span class="line">        Session session = sessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用前面一对多的例子演示 懒加载  客户型号与客户 是一对多关系</span></span><br><span class="line">        <span class="comment">// 现在查询出 客户型号是9 的客户型号</span></span><br><span class="line"></span><br><span class="line">        Cust_Type cust_type = session.get(Cust_Type.class, <span class="number">9</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 当lazy = true时 查询该型号对应的客户个数时，它查询的数据会封装到一个list，然后通过调用list的size()方法来返回值</span></span><br><span class="line">        <span class="comment">// 当lazy = extra时 查询该型号对应的客户个数时，它直接查询结果个数返回</span></span><br><span class="line">        System.out.println(cust_type.getCustomers().size());</span><br><span class="line"></span><br><span class="line">        session.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果对比</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">lazy <span class="operator">=</span> extra时</span><br><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        cust_type0_.id <span class="keyword">as</span> id1_0_0_,</span><br><span class="line">        cust_type0_.name <span class="keyword">as</span> name2_0_0_ </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        Cust_Type cust_type0_ </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        cust_type0_.id<span class="operator">=</span>?</span><br><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        <span class="built_in">count</span>(id) </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        customer </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        cust_type <span class="operator">=</span>?</span><br><span class="line"><span class="comment">----------------------------------------------------------------------------</span></span><br><span class="line">lazy <span class="operator">=</span> <span class="literal">true</span>时</span><br><span class="line"></span><br><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        cust_type0_.id <span class="keyword">as</span> id1_0_0_,</span><br><span class="line">        cust_type0_.name <span class="keyword">as</span> name2_0_0_ </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        Cust_Type cust_type0_ </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        cust_type0_.id<span class="operator">=</span>?</span><br><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        customers0_.cust_type <span class="keyword">as</span> cust_typ3_1_0_,</span><br><span class="line">        customers0_.id <span class="keyword">as</span> id1_1_0_,</span><br><span class="line">        customers0_.id <span class="keyword">as</span> id1_1_1_,</span><br><span class="line">        customers0_.name <span class="keyword">as</span> name2_1_1_,</span><br><span class="line">        customers0_.cust_type <span class="keyword">as</span> cust_typ3_1_1_ </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        customer customers0_ </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        customers0_.cust_type<span class="operator">=</span>?</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-属性的延迟加载"><a href="#4-属性的延迟加载" class="headerlink" title="4.属性的延迟加载"></a>4.属性的延迟加载</h2><p>上面讲的都是关系的延迟加载，还有一种是属性的延迟加载，</p>
+<p>当使用<strong>load</strong>的方式来获取对象的时候，只有访问了这个对象的属性，hibernate才会到数据库中进行查询。否则不会访问数据库 </p>
+<p>配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-mapping</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 这里设置为懒加载  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">&quot;com.fwq.entity.Cust_Type&quot;</span> <span class="attr">lazy</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.Integer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">&quot;identity&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">generator</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;java.lang.String&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">column</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- 对应Customer 关联键为Customer.cust_type   --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- lazy=&quot;true&quot; 开启懒加载  默认不写是开启的--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">&quot;customers&quot;</span> <span class="attr">lazy</span>=<span class="string">&quot;true&quot;</span> <span class="attr">table</span>=<span class="string">&quot;customer&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">&quot;cust_type&quot;</span> <span class="attr">not-null</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">&quot;com.fwq.entity.Customer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">one-to-many</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.fwq.entity.Cust_Type;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Session;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.SessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.cfg.Configuration;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 懒加载测试</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年09月04日20:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration().configure();</span><br><span class="line">        SessionFactory sessionFactory = configuration.buildSessionFactory();</span><br><span class="line">        Session session = sessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用前面一对多的例子演示 懒加载  客户型号与客户 是一对多关系</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 现在查询出 客户型号是9 的客户型号</span></span><br><span class="line"></span><br><span class="line">        Cust_Type cust_type = session.load(Cust_Type.class, <span class="number">9</span>);</span><br><span class="line"><span class="comment">//        System.out.println(cust_type);</span></span><br><span class="line">        System.out.println(<span class="string">&quot;执行完毕&quot;</span>);</span><br><span class="line"></span><br><span class="line">        session.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>执行结果: </p>
+<p>当lazy= true时候，控制台没有打印sql，执行System.out.println(cust_type);时才会打印sql。</p>
+<p>当设置lazy= false时，只要session.load(Cust_Type.class, 9)就会打印sql。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -208,7 +285,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -221,540 +298,103 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/08/31/Hibernate%E8%81%94%E7%BA%A7%E5%85%B3%E7%B3%BB/" class="archive-article-date">
-  	<time datetime="2022-08-31T15:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/31/Hibernate%E8%81%94%E7%BA%A7%E5%85%B3%E7%B3%BB/">Hibernate联级关系</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hibernate//" class="article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/08/30/Hibernate%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2022-08-30T14:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/08/30/Hibernate%E5%85%A5%E9%97%A8/">Hibernate入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hibernate//" class="article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" class="archive-article-date">
-  	<time datetime="2021-11-28T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">关于搭建Centos8的一些事</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">centos8</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Vm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux/centos8//" class="article-tag-list-link color3">centos8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/12/kettle%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2021-09-12T06:16:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/31/Hibernate%E8%81%94%E7%BA%A7%E5%85%B3%E7%B3%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hibernate联级关系</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/12/kettle%E5%85%A5%E9%97%A8/">kettle入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数仓</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ETL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kettle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ETL//" class="article-tag-list-link color4">ETL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/ETL/kettle//" class="article-tag-list-link color2">kettle</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2021-08-03T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/">BI-FineReport入门</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">FineReport</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">报表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/BI//" class="article-tag-list-link color3">BI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/BI/FineReport//" class="article-tag-list-link color1">FineReport</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" class="archive-article-date">
-  	<time datetime="2021-08-03T14:35:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">工作日志</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作日志//" class="article-tag-list-link color5">工作日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/" class="archive-article-date">
-  	<time datetime="2021-07-30T14:24:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/">Oracle学习笔记-04</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/" class="archive-article-date">
-  	<time datetime="2021-07-29T09:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/">Oracle学习笔记-03</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/" class="archive-article-date">
-  	<time datetime="2021-07-28T12:14:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/">Oracle学习笔记-02</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -778,8 +418,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
