@@ -165,6 +165,151 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Oracle学习笔记-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/">Oracle学习笔记-02</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/" class="archive-article-date">
+  	<time datetime="2021-07-28T12:14:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-28</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Oracle的表空间"><a href="#Oracle的表空间" class="headerlink" title="Oracle的表空间"></a>Oracle的表空间</h2><p>表空间就是在数据库中开辟的一个空间用来存储我们的数据库对象，一个数据库可以由多个表空间构成。</p>
+<p>表空间由一个或多个数据文件构成，大小可以由用户来定义。</p>
+<p>表空间的分类：</p>
+<ul>
+<li>永久表空间</li>
+<li>临时表空间</li>
+<li>UNDO表空间</li>
+</ul>
+<p>永久表空间主要存储数据库中要永久存储的对象，表、视图、存储过程。临时表空间存储数据库操作当中中间执行的过程，执行结束之后自动释放掉，不进行永久性保存。UNDO表空间用于保存事务所修改数据的旧值，可以做回滚操作。</p>
+<h3 id="表空间的创建"><a href="#表空间的创建" class="headerlink" title="表空间的创建"></a>表空间的创建</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建表空间</span></span><br><span class="line"><span class="comment">--create tablespace TEST_TABLESPACE datafile &#x27;TEST_TABLESPACE.dbf&#x27; size 10M</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用户分配表空间"><a href="#用户分配表空间" class="headerlink" title="用户分配表空间"></a>用户分配表空间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户设置表空间</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> table1 identified <span class="keyword">by</span> &quot;123456&quot; <span class="keyword">default</span> tablespace TEST_TABLESPACE;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户授权"><a href="#用户授权" class="headerlink" title="用户授权"></a>用户授权</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 用户授权</span></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">connect</span>, resource <span class="keyword">TO</span> table1;</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span> session <span class="keyword">to</span> table1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表的数据类型"><a href="#表的数据类型" class="headerlink" title="表的数据类型"></a>表的数据类型</h3><h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><ul>
+<li>固定长度类型：char(n)（max2000）,nchar(n)（unicode格式，max1000，多数用来存储汉字）</li>
+<li>可变长度类型：varchar2(n)（max4000）,nvarchar2(n)（unicode格式，max2000）</li>
+</ul>
+<h4 id="数值型"><a href="#数值型" class="headerlink" title="数值型"></a>数值型</h4><ul>
+<li>number(p,s) p为有效数字，s为小数点后面的位数，s可正可负</li>
+<li>float(n) 用来存储二进制数据，二进制数据的1-126位，一般使用number</li>
+</ul>
+<h4 id="日期型"><a href="#日期型" class="headerlink" title="日期型"></a>日期型</h4><ul>
+<li>date 范围为公元前4712年1月1日到公元9999年12月31日，可以精确到秒</li>
+<li>timestamp  可以精确到小数秒，一般用date类型</li>
+</ul>
+<h4 id="其他类型"><a href="#其他类型" class="headerlink" title="其他类型"></a>其他类型</h4><ul>
+<li>blob  可存4G数据以二进制存放  </li>
+<li>clob  可存4G数据以字符串存放</li>
+</ul>
+<h3 id="表的基本操作"><a href="#表的基本操作" class="headerlink" title="表的基本操作"></a>表的基本操作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test1(</span><br><span class="line">  id number(<span class="number">6</span>,<span class="number">0</span>),</span><br><span class="line">  username varchar2(<span class="number">20</span>),</span><br><span class="line">  password varchar2(<span class="number">20</span>),</span><br><span class="line">  email varchar2(<span class="number">30</span>),</span><br><span class="line">  barthday <span class="type">date</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加字段 add</span></span><br><span class="line"><span class="comment">--alter table test1 add column_name datatype; </span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 <span class="keyword">add</span> remarks varchar2(<span class="number">500</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更改字段数据类型 modify</span></span><br><span class="line"><span class="comment">--alter table test1 modify column_name datatype;</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 modify remarks varchar2(<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 更改字段名称 rename column old_name to new_name</span></span><br><span class="line"><span class="comment">--alter table test rename column column_name to new_column_name;</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 rename <span class="keyword">column</span> password <span class="keyword">to</span> psd</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表名 </span></span><br><span class="line"><span class="comment">--rename table_name to new_table_name;</span></span><br><span class="line">rename test2 <span class="keyword">to</span> test1</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表  truncate or drop</span></span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> table_name; <span class="comment">-- 删除表中的全部数据，没有删除表，比delete快很多。</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table_name;    <span class="comment">-- 数据和结构都删掉。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 设置某字段的默认值 default</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 modify psd <span class="keyword">default</span> <span class="string">&#x27;123456&#x27;</span>; <span class="comment">-- 已创建表设置</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 复制表数据</span></span><br><span class="line"><span class="comment">--create table table_new as select column1,...|* from table_old;  -- 创建表时复制</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test2 <span class="keyword">as</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> test1;  <span class="comment">-- 全部复制</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> test3 <span class="keyword">as</span> <span class="keyword">select</span> id,username,psd <span class="keyword">from</span> test1; <span class="comment">-- 部分复制</span></span><br><span class="line"><span class="comment">--insert into table_new [(column1,...)] select column1,...|* from table_old; --插入时复制</span></span><br><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> test3</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> test3  <span class="keyword">select</span> id,username,psd <span class="keyword">from</span> test1;</span><br></pre></td></tr></table></figure>
+
+<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><h3 id="（1）约束的介绍"><a href="#（1）约束的介绍" class="headerlink" title="（1）约束的介绍"></a>（1）约束的介绍</h3><p>约束的作用是定义规则（<code>最重要</code>），确保完整性。</p>
+<h3 id="（2）约束的种类"><a href="#（2）约束的种类" class="headerlink" title="（2）约束的种类"></a>（2）约束的种类</h3><ul>
+<li><p>非空约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--1.非空约束 not null</span></span><br><span class="line"><span class="comment">--create table table_name(column_name datatype not null,...); -- 创建是添加</span></span><br><span class="line"><span class="comment">--alter table tabel_name modify column_name datatype not null;-- 修改表时添加</span></span><br><span class="line"><span class="comment">--alter table tabel_name modify column_name datatype null;    -- 修改表时去除非空约束</span></span><br></pre></td></tr></table></figure></li>
+<li><p>主键约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--2.主键约束 primay key 必不可少，确定每一行数据的唯一性，一张表只能设计一个主键约束，主键约束可以由多个字段构成，称为复合主键</span></span><br><span class="line"><span class="comment">--create table table_name(column_name datatype primary key,...); -- 创建表时添加主键</span></span><br><span class="line"><span class="comment">--constraint constraint_name primary key (column_name1,...);  -- 一般用来创建联合主键</span></span><br><span class="line"><span class="comment">--如</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> userinfo_p1(</span><br><span class="line">       id number(<span class="number">6</span>,<span class="number">0</span>),</span><br><span class="line">       username varchar2(<span class="number">20</span>),</span><br><span class="line">       userpwd varchar2(<span class="number">20</span>),</span><br><span class="line">       <span class="keyword">constraint</span> pk_id_username <span class="keyword">primary</span> key(id,username)</span><br><span class="line">);</span><br><span class="line"><span class="comment">--在修改表时添加主键约束</span></span><br><span class="line"><span class="comment">--add constraint constraint_name primary key (column_name1,...); </span></span><br><span class="line"><span class="comment">--alter table table_name add constraint pk_id primary key(id);</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 <span class="keyword">add</span> <span class="keyword">constraint</span> test1_constraint <span class="keyword">primary</span> key (id,username);</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 disable <span class="keyword">constraint</span> test1_constraint; <span class="comment">-- 禁用不删除约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 <span class="keyword">drop</span> <span class="keyword">constraint</span> test1_constraint; <span class="comment">-- 删除约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 <span class="keyword">add</span> <span class="keyword">constraint</span> pk_id <span class="keyword">primary</span> key(id);</span><br></pre></td></tr></table></figure></li>
+<li><p>外键约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--3.外键约束 foreign key</span></span><br><span class="line"><span class="comment">-- 创建表示添加外键 定义完所有的字段之后设置的约束</span></span><br><span class="line"><span class="comment">--constraint constraint_name foreign key(column_name) references table_name(column_name) [on delete cascade];   </span></span><br><span class="line"><span class="comment">--后面的中括号是级联删除，表示主表当中的一条数据被删除的时候，从表当中使用了这条数据的字段所在的行也会被一起删除掉，这样确保了主从表数据的完整性。</span></span><br><span class="line"><span class="comment">-- 修改表时添加外键</span></span><br><span class="line"><span class="comment">--alter table tabel_name add constraint constraint_name foreign key(column_name) references table_name(column_name) [on dedelete cascade];</span></span><br></pre></td></tr></table></figure></li>
+<li><p>唯一约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--4.唯一约束 unique</span></span><br><span class="line"><span class="comment">-- 创建表时添加唯一约束</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table_name (</span><br><span class="line">         id number(<span class="number">6</span>,<span class="number">0</span>),</span><br><span class="line">         name varchar2(<span class="number">20</span>),</span><br><span class="line">         tel number(<span class="number">11</span>,<span class="number">0</span>) <span class="keyword">unique</span></span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 修改表时添加唯一约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> test1 <span class="keyword">add</span> <span class="keyword">constraint</span> email_unique <span class="keyword">unique</span>(email);</span><br></pre></td></tr></table></figure></li>
+<li><p>检查约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--5.检查约束 check</span></span><br><span class="line"><span class="comment">-- 检查约束，让表当中的值更具有实际意义，能够满足一定的条件，具有实际意义。</span></span><br><span class="line"><span class="comment">-- 创建时设置 create table tabel_name(column_name datatype check(expression),...);</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> table_name (</span><br><span class="line">         id number(<span class="number">6</span>,<span class="number">0</span>),</span><br><span class="line">         name varchar2(<span class="number">20</span>),</span><br><span class="line">         salary number(<span class="number">5</span>,<span class="number">0</span>) <span class="keyword">check</span>(salary<span class="operator">&gt;</span><span class="number">0</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表时添加检查约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">add</span> <span class="keyword">constraint</span> salary_check <span class="keyword">check</span>(salary<span class="operator">&gt;</span><span class="number">0</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Oracle学习笔记-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
