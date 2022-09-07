@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fwq7.github.io">
-  <title>Category: Linux | Study7</title>
+  <title>Kafka入门-基础慨念 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个个人博客,java，学习，编程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Study7">
-<meta property="og:url" content="https://fwq7.github.io/categories/Linux/index.html">
+  <meta name="description" content="Kafka入门-基础慨念概述生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋 假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的鸡蛋就丢失了。    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka入门-基础慨念">
+<meta property="og:url" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="Study7">
-<meta property="og:description" content="这是一个个人博客,java，学习，编程">
+<meta property="og:description" content="Kafka入门-基础慨念概述生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋 假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的鸡蛋就丢失了。    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE1.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE2.png">
+<meta property="article:published_time" content="2022-09-06T15:47:29.000Z">
+<meta property="article:modified_time" content="2022-09-07T15:17:54.847Z">
 <meta property="article:author" content="fwq">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="消息中间件">
+<meta property="article:tag" content="kafka">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE1.png">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
   
@@ -163,83 +169,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-kafka入门-基础概念" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" class="archive-article-date">
-  	<time datetime="2021-11-28T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">关于搭建Centos8的一些事</a>
+    <h1 class="article-title" itemprop="name">
+      Kafka入门-基础慨念
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="archive-article-date">
+  	<time datetime="2022-09-06T15:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-06</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Kafka入门-基础慨念"><a href="#Kafka入门-基础慨念" class="headerlink" title="Kafka入门-基础慨念"></a>Kafka入门-基础慨念</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋</p>
+<p>假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的<br>鸡蛋就丢失了。<br>    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，<br>那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者拒绝再吃了，”鸡蛋“又丢失了，<br>这个时候我们放个篮子在它们中间，生产出来的鸡蛋都放到篮子里，消费者去篮子里拿鸡蛋，这样鸡蛋就不会<br>丢失了，都在篮子里，而这个篮子就是”kafka“。<br>    鸡蛋其实就是”数据流“，系统之间的交互是通过”数据流“来传输的，就是tcp、https什么的），也称为报文，也叫“消息”。</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p> 1.producer：生产者，用来发送消息<br> 2.consumer: 消费者，用来接受消息<br> 3.topic：主题，你把它理解为标签，生产者每生产出来一个鸡蛋就贴上一个标签（topic），<br>          消费者可不是谁生产的“鸡蛋”都吃的，这样不同的生产者生产出来的“鸡蛋”，消费者就可以选择性的“吃”了<br> 4.broker:就是一台kafka主机，就是装鸡蛋的篮子</p>
+<p> 在一个broker里面有很多个主题</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://kafka.apache.org/downloads.html">https://kafka.apache.org/downloads.html</a></p>
+<h2 id="主题和日志（Topic和Log）"><a href="#主题和日志（Topic和Log）" class="headerlink" title="主题和日志（Topic和Log）"></a>主题和日志（Topic和Log）</h2><p>Topic是发布的消息的类别名，一个topic可以有零个，一个或多个消费者订阅该主题的消息。<br>对于每个topic，Kafka集群都会维护一个分区log，就像下图中所示：</p>
+<p><img src="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE1.png"></p>
+<p>每一个分区都是一个顺序的、不可变的消息队列， 并且可以持续的添加。分区中的消息都被分了一个序列号，称之为偏移量(offset)，在每个分区中此偏移量都是唯一的。</p>
+<p>Kafka集群保持所有的消息，直到它们过期（无论消息是否被消费）。实际上消费者所持有的仅有的元数据就是这个offset（偏移量），<br>也就是说offset由消费者来控制：正常情况当消费者消费消息的时候，偏移量也线性的的增加。但是实际偏移量由消费者控制，消费者可以将偏移量重置为更早的位置，重新读取消息。<br>可以看到这种设计对消费者来说操作自如，一个消费者的操作不会影响其它消费者对此log的处理。</p>
+<p><img src="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE2.png"></p>
+<p>Kafka中采用分区的设计有几个目的：</p>
+<ul>
+<li>​    一是可以处理更多的消息，不受单台服务器的限制。Topic拥有多个分区意味着它可以不受限的处理更多的数据。    </li>
+<li>​    第二，分区可以作为并行处理的单元。<br>​<br>​    </li>
+</ul>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><p>Log的分区被分布到集群中的多个服务器上。每个服务器处理它分到的分区。 根据配置每个分区还可以复制到其它服务器作为备份容错。 每个分区有一个leader，零或多个follower。<br>Leader处理此分区的所有的读写请求，而follower被动的复制数据。如果leader宕机，其它的一个follower会被推举为新的leader。 一台服务器可能同时是一个分区的leader，另一个分区的follower。<br>这样可以平衡负载，避免所有的请求都只让一台或者某几台服务器处理。</p>
+<h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><p>生产者往某个Topic上发布消息。生产者也负责选择发布到Topic上的哪一个分区。最简单的方式从分区列表中轮流选择。也可以根据某种算法依照权重选择分区。开发者负责如何选择分区的算法。</p>
+<h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><p>消费模型分为队列和发布-订阅式两种模式，</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">消息中间件</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">centos8</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Vm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux/centos8//" class="article-tag-list-link color3">centos8</a>
+        			<a href="/categories/kafka//" class="article-tag-list-link color1">kafka</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/09/05/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%9720220905/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">工作日志</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -262,10 +387,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

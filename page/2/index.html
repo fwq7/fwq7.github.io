@@ -165,6 +165,222 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Oracle学习笔记-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/">Oracle学习笔记-03</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/" class="archive-article-date">
+  	<time datetime="2021-07-29T09:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-29</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PL-SQL"><a href="#PL-SQL" class="headerlink" title="PL/SQL"></a>PL/SQL</h1><h2 id="1-语句格式"><a href="#1-语句格式" class="headerlink" title="1.语句格式"></a>1.语句格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">declare</span><br><span class="line">    --说明部分（变量说明、光标申明、例外说明）</span><br><span class="line">begin</span><br><span class="line">    --程序体（DML语句）</span><br><span class="line">    dbms_output.put_line(&#39;Hello World&#39;);</span><br><span class="line">exception</span><br><span class="line">    --例外处理语句</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-变量"><a href="#2-变量" class="headerlink" title="2.变量"></a>2.变量</h2><ul>
+<li><p>定义基本变量</p>
+<p>类型：char，varchar2，date，number，boolean，long</p>
+<p>名字在前面，变量是在后面，:=为赋值符号不是单=号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var1      char(15);</span><br><span class="line">married   bollean :&#x3D; true;</span><br><span class="line">psal      number(7,2);  --说明有两位小数</span><br></pre></td></tr></table></figure></li>
+<li><p>引用型变量定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_name emp.ename%type;  --引用ename的类型，ename是啥类型变量就是啥类型</span><br></pre></td></tr></table></figure>
+
+<p>第二种赋值方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ename,sal into pename,psal from emp where empno&#x3D;7839;</span><br></pre></td></tr></table></figure>
+
+<p>这里的into就可以赋值，是一一对应的。</p>
+</li>
+<li><p>定义记录型变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">emp_rec emp%rowtype;   </span><br><span class="line">--取表中一行的类型，作为变量的类型，可以理解为数组，如果需要取用到列里面的某一行，就像如下写法：</span><br><span class="line">emp_rec.ename :&#x3D; &#39;ADAMS&#39;;   --ename是列的名字。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3-流程控制"><a href="#3-流程控制" class="headerlink" title="3.流程控制"></a>3.流程控制</h2><h3 id="1-if语句"><a href="#1-if语句" class="headerlink" title="1.if语句"></a>1.if语句</h3><p>情况一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if 条件 then 语句1;</span><br><span class="line">语句2;</span><br><span class="line">end if;</span><br></pre></td></tr></table></figure>
+
+<p>情况二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if 条件 then 语句序列1;</span><br><span class="line">else 语句序列2;</span><br><span class="line">end if;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">declare</span><br><span class="line">a number :&#x3D;3;</span><br><span class="line">begin</span><br><span class="line">  if a&gt;&#x3D;3 then dbms_output.put_line(a);</span><br><span class="line">  else dbms_output.put_line(&#39;a小于3&#39;);</span><br><span class="line">  end if;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<p>情况三</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if 条件 then 语句;</span><br><span class="line">elsif 语句 then 语句;    --特别注意下elsif</span><br><span class="line">else 语句;</span><br><span class="line">end if;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-while循环"><a href="#2-while循环" class="headerlink" title="2.while循环"></a>2.while循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-- while循环</span><br><span class="line">declare</span><br><span class="line">a number :&#x3D;3;</span><br><span class="line">begin </span><br><span class="line"> while a&gt;0 loop</span><br><span class="line">   dbms_output.put_line(a);</span><br><span class="line">   a:&#x3D;a-1;</span><br><span class="line">  end loop;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-loop循环"><a href="#3-loop循环" class="headerlink" title="3.loop循环"></a>3.loop循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">--在控制光标的时候比较简单</span><br><span class="line">loop</span><br><span class="line">exit[when 条件];</span><br><span class="line">......</span><br><span class="line">end loop;</span><br><span class="line">------------------------------------------------举例 输出3到1</span><br><span class="line">--loop循环</span><br><span class="line">declare</span><br><span class="line">a number :&#x3D;3;</span><br><span class="line">begin </span><br><span class="line">  loop</span><br><span class="line">    exit when a&#x3D;0;</span><br><span class="line">    dbms_output.put_line(a);</span><br><span class="line">    a:&#x3D;a-1;</span><br><span class="line">  end loop;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-for循环"><a href="#4-for循环" class="headerlink" title="4.for循环"></a>4.for循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">for i in 1..3 loop   --表示连续区间用这种写法</span><br><span class="line">语句序列;</span><br><span class="line">end loop;</span><br><span class="line"></span><br><span class="line">----------------------------------------------举例 输出3到1 </span><br><span class="line">-- for循环</span><br><span class="line">declare</span><br><span class="line">a number :&#x3D;3;</span><br><span class="line">begin</span><br><span class="line">  for i in 1..10 loop</span><br><span class="line">    dbms_output.put_line(i+a);</span><br><span class="line">  end loop;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-练习9-9乘法表"><a href="#5-练习9-9乘法表" class="headerlink" title="5.练习9*9乘法表"></a>5.练习9*9乘法表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 9*9乘法表</span><br><span class="line">declare</span><br><span class="line">begin </span><br><span class="line">  for i in 1..9 loop</span><br><span class="line">    for j in 1..9 loop</span><br><span class="line">      if i&gt;&#x3D;j then dbms_output.put(i||&#39;*&#39;||j||&#39;&#x3D;&#39;||i*j||&#39; &#39;);</span><br><span class="line">      end if;</span><br><span class="line">    end loop;</span><br><span class="line">    dbms_output.put_line(&#39;&#39;);</span><br><span class="line">  end loop;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h1><h2 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h2><pre><code> 用来存储多条查询数据的一种数据结构（&#39;结果集&#39;）， 它有一个 &#39;指针&#39;，从上往下移动（&#39;fetch&#39;），从而能够 &#39;遍历每条记录&#39; 。
+</code></pre>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cursor 光标名 [(参数名 数据类型[,参数名 数据类型]...)] is select 语句;</span><br><span class="line">如</span><br><span class="line">cursor c1 is select ename from emp;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">--1.声明游标</span><br><span class="line">cursor c1 is select...</span><br><span class="line"></span><br><span class="line">--2.打开游标</span><br><span class="line">open c1;</span><br><span class="line"></span><br><span class="line">--3.获取数据（一次获取一行）</span><br><span class="line">fetch c1 into pename; (取一行到变量中)</span><br><span class="line"></span><br><span class="line">--4.关闭游标</span><br><span class="line">close c1;</span><br><span class="line"></span><br><span class="line">--------------------------------------------------举例 打印emp表前三个姓名</span><br><span class="line"></span><br><span class="line">declare</span><br><span class="line">cursor c1 is select * from scott.emp;</span><br><span class="line">row scott.emp%rowtype;</span><br><span class="line">begin </span><br><span class="line"> open c1;</span><br><span class="line"> for i in 1..3 loop</span><br><span class="line">   fetch c1 into row;</span><br><span class="line">   dbms_output.put_line(row.ename);</span><br><span class="line"> end loop;</span><br><span class="line"> close c1;</span><br><span class="line">end;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-游标的属性"><a href="#4-游标的属性" class="headerlink" title="4.游标的属性"></a>4.游标的属性</h2><ul>
+<li>%found(光标能取到内容返回true，否则false)    </li>
+<li>%notfound（与前者相反）</li>
+<li>%isopen：判断光标是否打开</li>
+<li>%rowcount：影响的行数，不是总行数，比如光标取走了10行的数据，那么这个值就是10</li>
+</ul>
+<h2 id="5-光标的限制"><a href="#5-光标的限制" class="headerlink" title="5.光标的限制"></a>5.光标的限制</h2><p>默认情况下，oracle数据库只允许在同一个会话中打开300个光标</p>
+<ul>
+<li>修改光标数的限制：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter system set open_cursors&#x3D;400 scope&#x3D;both; </span><br></pre></td></tr></table></figure>
+
+<p>scope是范围，取值有三个：both, memory（只更改当前实例）, spfile（只更改参数文件，数据库需要重启）</p>
+<h1 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h1><h2 id="1-触发器的概念"><a href="#1-触发器的概念" class="headerlink" title="1.触发器的概念"></a>1.触发器的概念</h2><p>触发器是一个特殊的存储过程。是一个与表相关联的、存储的PL/SQL程序。</p>
+<p>作用：每当一个特定的数据操作语句（insert、update、delete，注意没有select）在指定的表上发出时，oracle自动地执行触发器中定义的语句序列。</p>
+<h2 id="2-触发器的类型"><a href="#2-触发器的类型" class="headerlink" title="2.触发器的类型"></a>2.触发器的类型</h2><ul>
+<li>语句级的触发器</li>
+</ul>
+<p>在指定的操作语句操作之前或之后执行一次，不管这条语句影响了多少行。</p>
+<p>语句级触发器针对表，只会触发一次</p>
+<ul>
+<li>行级的触发器</li>
+</ul>
+<p>触发语句作用的每一条记录都被触发。在行级触发器中使用:old和:new伪记录变量，识别值的状态。如果有for each row就表示行级触发器。<br>如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into emp10 select * from emp where deptno&#x3D;10;</span><br></pre></td></tr></table></figure>
+
+<p>会查出3条记录。</p>
+<p>行级触发器针对行，有多少条记录就触发多少次。</p>
+<h2 id="3-创建触发器的语法"><a href="#3-创建触发器的语法" class="headerlink" title="3.创建触发器的语法"></a>3.创建触发器的语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create [or replace] trigger 触发器名</span><br><span class="line">&#123;before|after&#125;</span><br><span class="line">&#123;delete|insert|update [of 列名]&#125;</span><br><span class="line">on 表名</span><br><span class="line">[for each row [when 条件]]</span><br><span class="line">plsql块</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-第一个触发器"><a href="#4-第一个触发器" class="headerlink" title="4.第一个触发器"></a>4.第一个触发器</h2><p>每当成功插入新员工后，自动打印一句话，”成功插入新员工”。单词trigger</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--触发器  trigger</span><br><span class="line">create trigger test_insert_after</span><br><span class="line">after insert</span><br><span class="line">on scott.emp</span><br><span class="line">declare</span><br><span class="line">begin</span><br><span class="line">  dbms_output.put_line(&#39;成功插入新员工&#39;);</span><br><span class="line">end;</span><br><span class="line">insert into scott.emp values(777,&#39;fwq22&#39;,&#39;程序员&#39;,8000,sysdate,8000,300.00,20)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-触发器的具体应用场景"><a href="#5-触发器的具体应用场景" class="headerlink" title="5.触发器的具体应用场景"></a>5.触发器的具体应用场景</h2><p>（1）复杂的安全性检查   –比如周末不允许操作数据库</p>
+<p>（2）数据的确认   –涨后的工资大于涨前的工资</p>
+<p>（3）数据库审计   –跟踪表上所做的数据操作，什么时间什么人操作了什么数据，操作的人是什么。基于值的审计</p>
+<p>（4）数据的备份和同步   –异地备份，把主数据的数据自动同步到备数据库中</p>
+<h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h2 id="1-语法"><a href="#1-语法" class="headerlink" title="1.语法"></a>1.语法</h2><p><strong>在创建存储过程之前，如果对其他用户的表进行使用的话，在存储过程中会报错：表不存在， 但是我里面的SQL摘出来单独执行，可以运行。</strong> </p>
+<p><strong>原因： 是因为权限问题。如果A用户在存储过程中调用B用户的对象，则必须B显示的把该对象的相应权限赋予给用户A。在SQL窗口可以查是因为DBA用户把B用户对象的同义词的权限赋给了A 用户。</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create [or replace] PROCEDURE 过程名(参数列表)</span><br><span class="line">AS</span><br><span class="line">--PLSQL子程序体; （关键字可以小写）（如果不传参，则参数列表的小括号也可以省略）</span><br><span class="line">begin</span><br><span class="line">	--代码...</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>如果写的是存储函数，那么这里的PROCEDURE需要改成FUNCTION，而且必须在参数列表和AS之间添加一句：<code>RETURN 函数值类型</code>。而且需要在子程序体需要返回的时候写<code>return 返回值</code>。</strong> </p>
+<p>调用方式有两种：</p>
+<p>（1）<code>exec 过程名();</code></p>
+<p>（2）begin<br>            过程名();<br>          end;</p>
+<h3 id="2-入参"><a href="#2-入参" class="headerlink" title="2.入参"></a>2.入参</h3><p>在参数列表中，如果是输入参数，可以写入eno in number，in是关键，in前面是变量名，后面是变量类型。</p>
+<h3 id="3-出参"><a href="#3-出参" class="headerlink" title="3.出参"></a>3.出参</h3><p>如果是输出参数，写eno out number，out是关键，out前面是变量名，后面是变量类型。</p>
+<p>存储过程和存储函数都可以有out参数。</p>
+<p>他们都可以有多个out参数。</p>
+<p>存储过程可以通过out参数来实现返回值。</p>
+<h2 id="4-例子"><a href="#4-例子" class="headerlink" title="4.例子"></a>4.例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">-- 下面存储过程，fwq用户使用了scott用户的对象，所以要先登录scott对象给fwq用户授权</span><br><span class="line">grant select on emp to fwq;</span><br><span class="line">grant update on emp to fwq;</span><br><span class="line"></span><br><span class="line">--存储过程</span><br><span class="line">create or replace procedure testproc(eno in number,pname out varchar2,psal out number,pjob out varchar2)</span><br><span class="line">is</span><br><span class="line">begin</span><br><span class="line">  select ename,sal,job into pname,psal,pjob from scott.emp where empno&#x3D;eno;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">declare</span><br><span class="line">  eno number :&#x3D;7369;</span><br><span class="line">  pname varchar2(20);</span><br><span class="line">  psal  number;</span><br><span class="line">  pjob  varchar2(20);</span><br><span class="line">begin </span><br><span class="line">  TESTPROC(eno,pname,psal,pjob);</span><br><span class="line">  dbms_output.put_line(pname||&#39;-&#39;||psal||&#39;-&#39;||pjob);</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 存储函数</span><br><span class="line">create or replace function testfunction(eno in number)</span><br><span class="line">return varchar2</span><br><span class="line">AS</span><br><span class="line">ename varchar2(20);</span><br><span class="line">job varchar2(20);</span><br><span class="line">sal number;</span><br><span class="line">res varchar2(20);</span><br><span class="line">begin</span><br><span class="line">  select ename,job,sal into ename,job,sal from scott.emp where empno&#x3D;eno;</span><br><span class="line">  res:&#x3D;ename||&#39;-&#39;||job||&#39;-&#39;||sal;</span><br><span class="line">  return res;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">declare</span><br><span class="line">  eno number :&#x3D;7369;</span><br><span class="line">begin </span><br><span class="line">  dbms_output.put_line(testfunction(eno));</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1.定义"></a>1.定义</h2><p>​    视图(view)，也称虚表, 不占用物理空间，这个也是相对概念，因为视图本身的定义语句还是要存储在数据字典里的。视图只有逻辑定义。每次使用的时候,只是重新执行SQL。 </p>
+<p>​    视图是从一个或多个实际表中获得的，这些表的数据存放在数据库中。那些用于产生视图的表叫做该视图的基表。一个视图也可以从另一个视图中产生。 </p>
+<p>​    还有一种视图：物化视图（MATERIALIZED VIEW ），也称实体化视图，快照 （8i 以前的说法） ，它是含有数据的，占用存储空间。 </p>
+<h2 id="2-作用"><a href="#2-作用" class="headerlink" title="2.作用"></a>2.作用</h2><ol>
+<li> 提供各种数据表现形式, 可以使用各种不同的方式将基表的数据展现在用户面前, 以便符合用户的使用习惯(主要手段: 使用别名)</li>
+<li> 隐藏数据的逻辑复杂性并简化查询语句, 多表查询语句一般是比较复杂的, 而且用户需要了解表之间的关系, 否则容易写错; 如果基于这样的查询语句创建一个视图, 用户就可以直接对这个视图进行”简单查询”而获得结果. 这样就隐藏了数据的复杂性并简化了查询语句.这也是oracle提供各种”数据字典视图”的原因一,all_constraints就是一个含有2个子查询并连接了9个表的视图(在catalog.sql中定义) </li>
+<li> 执行某些必须使用视图的查询. 某些查询必须借助视图的帮助才能完成. 比如, 有些查询需要连接一个分组统计后的表和另一表, 这时就可以先基于分组统计的结果创建一个视图, 然后在查询中连接这个视图和另一个表就可以了</li>
+<li> 提供某些安全性保证. 视图提供了一种可以控制的方式, 即可以让不同的用户看见不同的列, 而不允许访问那些敏感的列, 这样就可以保证敏感数据不被用户看见 </li>
+<li> 简化用户权限的管理. 可以将视图的权限授予用户, 而不必将基表中某些列的权限授予用户, 这样就简化了用户权限的定义 </li>
+</ol>
+<h2 id="3-语法"><a href="#3-语法" class="headerlink" title="3.语法"></a>3.语法</h2><p>​    要在当前方案中创建视图, 用户必须具有create view系统权限; 要在其他方案中创建视图, 用户必须具有create any view系统权限. 视图的功能取决于视图拥有者的权限. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">--dba登录 </span><br><span class="line">grant create view to scott;</span><br><span class="line">-- 视图 </span><br><span class="line">create view testView as (</span><br><span class="line">  select empno,ename,sal from scott.emp</span><br><span class="line">)[ with read only];</span><br><span class="line">-- 在结尾加上 with read only 是创建只读视图  只能查询，无法进行更改</span><br><span class="line"></span><br><span class="line">select * from testView</span><br><span class="line">update testView set ename&#x3D;&#39;范伟强&#39; where empno&#x3D;6666 --更新视图数据 原表的数据也会更新</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Oracle学习笔记-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1040,6 +1256,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kettle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">消息中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
               </li>
             
             <div class="clearfix"></div>
