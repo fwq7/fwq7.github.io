@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE1.png">
 <meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE2.png">
 <meta property="article:published_time" content="2022-09-06T15:47:29.000Z">
-<meta property="article:modified_time" content="2022-09-07T15:17:54.847Z">
+<meta property="article:modified_time" content="2022-09-07T15:20:04.789Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="消息中间件">
 <meta property="article:tag" content="kafka">
@@ -193,7 +193,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Kafka入门-基础慨念"><a href="#Kafka入门-基础慨念" class="headerlink" title="Kafka入门-基础慨念"></a>Kafka入门-基础慨念</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋</p>
-<p>假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的<br>鸡蛋就丢失了。<br>    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，<br>那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者拒绝再吃了，”鸡蛋“又丢失了，<br>这个时候我们放个篮子在它们中间，生产出来的鸡蛋都放到篮子里，消费者去篮子里拿鸡蛋，这样鸡蛋就不会<br>丢失了，都在篮子里，而这个篮子就是”kafka“。<br>    鸡蛋其实就是”数据流“，系统之间的交互是通过”数据流“来传输的，就是tcp、https什么的），也称为报文，也叫“消息”。</p>
+<p>假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的<br>鸡蛋就丢失了。<br>    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，<br>那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者拒绝再吃了，”鸡蛋“又丢失了，<br>这个时候我们放个篮子在它们中间，生产出来的鸡蛋都放到篮子里，消费者去篮子里拿鸡蛋，这样鸡蛋就不会<br>丢失了，都在篮子里，而这个篮子就是”kafka“。<br>    鸡蛋其实就是”数据流“，系统之间的交互是通过”数据流“来传输的，就是tcp、https什么的），也称为报文，也叫“消息”。<br>    <span id="more"></span> </p>
 <h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p> 1.producer：生产者，用来发送消息<br> 2.consumer: 消费者，用来接受消息<br> 3.topic：主题，你把它理解为标签，生产者每生产出来一个鸡蛋就贴上一个标签（topic），<br>          消费者可不是谁生产的“鸡蛋”都吃的，这样不同的生产者生产出来的“鸡蛋”，消费者就可以选择性的“吃”了<br> 4.broker:就是一台kafka主机，就是装鸡蛋的篮子</p>
 <p> 在一个broker里面有很多个主题</p>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://kafka.apache.org/downloads.html">https://kafka.apache.org/downloads.html</a></p>
