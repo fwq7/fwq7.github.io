@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="https://fwq7.github.io">
   <title>Kafka入门-基础慨念 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Kafka入门-基础慨念概述生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋 假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的鸡蛋就丢失了。    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者">
+  <meta name="description" content="Kafka入门-基础慨念作者：半兽人链接：https:&#x2F;&#x2F;www.orchome.com&#x2F;5来源：OrcHome 概述生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋 假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的鸡蛋就丢失了。    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka入门-基础慨念">
 <meta property="og:url" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="Study7">
-<meta property="og:description" content="Kafka入门-基础慨念概述生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋 假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的鸡蛋就丢失了。    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者">
+<meta property="og:description" content="Kafka入门-基础慨念作者：半兽人链接：https:&#x2F;&#x2F;www.orchome.com&#x2F;5来源：OrcHome 概述生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋 假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的鸡蛋就丢失了。    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE1.png">
 <meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE2.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE3.png">
 <meta property="article:published_time" content="2022-09-06T15:47:29.000Z">
-<meta property="article:modified_time" content="2022-09-07T15:20:04.789Z">
+<meta property="article:modified_time" content="2022-09-11T13:10:42.635Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="消息中间件">
 <meta property="article:tag" content="kafka">
@@ -192,7 +193,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Kafka入门-基础慨念"><a href="#Kafka入门-基础慨念" class="headerlink" title="Kafka入门-基础慨念"></a>Kafka入门-基础慨念</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋</p>
+        <h1 id="Kafka入门-基础慨念"><a href="#Kafka入门-基础慨念" class="headerlink" title="Kafka入门-基础慨念"></a>Kafka入门-基础慨念</h1><p>作者：半兽人<br>链接：<a target="_blank" rel="noopener" href="https://www.orchome.com/5">https://www.orchome.com/5</a><br>来源：OrcHome</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋</p>
 <p>假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的<br>鸡蛋就丢失了。<br>    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，<br>那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者拒绝再吃了，”鸡蛋“又丢失了，<br>这个时候我们放个篮子在它们中间，生产出来的鸡蛋都放到篮子里，消费者去篮子里拿鸡蛋，这样鸡蛋就不会<br>丢失了，都在篮子里，而这个篮子就是”kafka“。<br>    鸡蛋其实就是”数据流“，系统之间的交互是通过”数据流“来传输的，就是tcp、https什么的），也称为报文，也叫“消息”。<br>    <span id="more"></span> </p>
 <h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><p> 1.producer：生产者，用来发送消息<br> 2.consumer: 消费者，用来接受消息<br> 3.topic：主题，你把它理解为标签，生产者每生产出来一个鸡蛋就贴上一个标签（topic），<br>          消费者可不是谁生产的“鸡蛋”都吃的，这样不同的生产者生产出来的“鸡蛋”，消费者就可以选择性的“吃”了<br> 4.broker:就是一台kafka主机，就是装鸡蛋的篮子</p>
 <p> 在一个broker里面有很多个主题</p>
@@ -209,7 +211,40 @@
 </ul>
 <h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><p>Log的分区被分布到集群中的多个服务器上。每个服务器处理它分到的分区。 根据配置每个分区还可以复制到其它服务器作为备份容错。 每个分区有一个leader，零或多个follower。<br>Leader处理此分区的所有的读写请求，而follower被动的复制数据。如果leader宕机，其它的一个follower会被推举为新的leader。 一台服务器可能同时是一个分区的leader，另一个分区的follower。<br>这样可以平衡负载，避免所有的请求都只让一台或者某几台服务器处理。</p>
 <h2 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h2><p>生产者往某个Topic上发布消息。生产者也负责选择发布到Topic上的哪一个分区。最简单的方式从分区列表中轮流选择。也可以根据某种算法依照权重选择分区。开发者负责如何选择分区的算法。</p>
-<h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><p>消费模型分为队列和发布-订阅式两种模式，</p>
+<h2 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h2><p>消费模型分为队列和发布-订阅式两种模式</p>
+<ol>
+<li>队列的处理方式是一组消费者从服务器读取消息，一条消息只有其中的一个消费者来处理。</li>
+<li>在发布-订阅模型中，消息被广播给所有的消费者，接收到消息的消费者都可以处理此消息。</li>
+</ol>
+<p>Kafka为这两种模型提供了单一的消费者抽象模型： 消费者组 （consumer group）。消费者用一个消费者组名标记自己。 一个发布在Topic上消息被分发给此消费者组中的一个消费者。 假如所有的消费者都在一个组中，那么这就变成了queue模型。 假如所有的消费者都在不同的组中，那么就完全变成了发布-订阅模型。 更通用的， 我们可以创建一些消费者组作为逻辑上的订阅者。每个组包含数目不等的消费者， 一个组内多个消费者可以用来扩展性能和容错。正如下图所示：</p>
+<p><img src="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/kafka%E5%85%A5%E9%97%A8%5C%E5%9B%BE3.png"></p>
+<p>正像传统的消息系统一样，Kafka保证消息的顺序不变。 再详细扯几句。传统的队列模型保持消息，并且保证它们的先后顺序不变。但是， 尽管服务器保证了消息的顺序，消息还是异步的发送给各个消费者，消费者收到消息的先后顺序不能保证了。这也意味着并行消费将不能保证消息的先后顺序。用过传统的消息系统的同学肯定清楚，消息的顺序处理很让人头痛。如果只让一个消费者处理消息，又违背了并行处理的初衷。 在这一点上Kafka做的更好，尽管并没有完全解决上述问题。 Kafka采用了一种分而治之的策略：分区。 因为Topic分区中消息只能由消费者组中的唯一一个消费者处理，所以消息肯定是按照先后顺序进行处理的。但是它也仅仅是保证Topic的一个分区顺序处理，不能保证跨分区的消息先后处理顺序。 所以，如果你想要顺序的处理Topic的所有消息，那就只提供一个分区。</p>
+<h2 id="kafka的保证"><a href="#kafka的保证" class="headerlink" title="kafka的保证"></a>kafka的保证</h2><ul>
+<li>生产者发送到一个特定的Topic的分区上，消息将会按照它们发送的顺序依次加入，也就是说，如果一个消息M1和M2使用相同的producer发送，M1先发送，那么M1将比M2的offset低，并且有限的出现在日志中。</li>
+<li>消费者收到消息也是此顺序。</li>
+<li>如果一个Topic配置了复制因子为N，那么可以允许N-1服务器宕机而不会丢失任何已经提交的消息。</li>
+</ul>
+<h2 id="Kafka消息系统"><a href="#Kafka消息系统" class="headerlink" title="Kafka消息系统"></a>Kafka消息系统</h2><p>Kafka的流与传统企业消息系统相比的概念如何？</p>
+<p>传统的消息有两种模式：<code>队列</code>和<code>发布订阅</code>。在队列模式中，消费者池从服务器读取消息（每个消息只被其中一个读取）; 发布订阅模式：消息广播给所有的消费者。这两种模式都有优缺点，队列的优点是允许多个消费者瓜分处理数据，这样可以扩展处理。但是，队列不像多个订阅者，一旦消息者进程读取后故障了，那么消息就丢了。而<code>发布和订阅</code>允许你广播数据到多个消费者，由于每个订阅者都订阅了消息，所以没办法缩放处理。</p>
+<p>kafka中消费者组有两个概念：<code>队列</code>：消费者组（consumer group）允许同名的消费者组成员瓜分处理。<code>发布订阅</code>：允许你广播消息给多个消费者组（不同名）。</p>
+<p>kafka有比传统的消息系统更强的顺序保证。</p>
+<p>传统的消息系统按顺序保存数据，如果多个消费者从队列消费，则服务器按存储的顺序发送消息，但是，尽管服务器按顺序发送，消息异步传递到消费者，因此消息可能乱序到达消费者。这意味着消息存在并行消费的情况，顺序就无法保证。消息系统常常通过仅设1个消费者来解决这个问题，但是这意味着没用到并行处理。</p>
+<p>kafka做的更好。通过并行topic的partition —— kafka提供了顺序保证和负载均衡。每个partition仅由同一个消费者组中的一个消费者消费到。并确保消费者是该partition的唯一消费者，并按顺序消费数据。每个topic有多个分区，则需要对多个消费者做负载均衡，但请注意，<code>相同的消费者组中不能有比分区更多的消费者，否则多出的消费者一直处于空等待，不会收到消息</code>。</p>
+<h2 id="kafka的存储"><a href="#kafka的存储" class="headerlink" title="kafka的存储"></a>kafka的存储</h2><p>所有发布消息到<code>消息队列</code>和消费分离的系统，实际上都充当了一个存储系统（发布的消息先存储起来）。Kafka比别的系统的优势是它是一个非常高性能的<code>存储系统</code>。</p>
+<p>写入到kafka的数据将写到磁盘并复制到集群中保证容错性。并允许生产者等待消息应答，直到消息完全写入。</p>
+<p>kafka的磁盘结构 - 无论你服务器上有50KB或50TB，执行是相同的。</p>
+<p>client来控制读取数据的位置。你还可以认为kafka是一种专用于高性能，低延迟，提交日志存储，复制，和传播特殊用途的<code>分布式文件系统</code>。</p>
+<h2 id="kafka的流处理"><a href="#kafka的流处理" class="headerlink" title="kafka的流处理"></a>kafka的流处理</h2><p>仅仅读，写和存储是不够的，kafka的目标是实时的流处理。</p>
+<p>在kafka中，流处理持续获取<code>输入topic</code>的数据，进行处理加工，然后写入<code>输出topic</code>。例如，一个零售APP，接收销售和出货的<code>输入流</code>，统计数量或调整价格后输出。</p>
+<p>可以直接使用producer和consumer API进行简单的处理。对于复杂的转换，Kafka提供了更强大的Streams API。可构建<code>聚合计算</code>或<code>连接流到一起</code>的复杂应用程序。</p>
+<p>助于解决此类应用面临的硬性问题：处理无序的数据，代码更改的再处理，执行状态计算等。</p>
+<p>Streams API在Kafka中的核心：使用producer和consumer API作为输入，利用Kafka做状态存储，使用相同的组机制在stream处理器实例之间进行容错保障。</p>
+<h2 id="综合起来"><a href="#综合起来" class="headerlink" title="综合起来"></a>综合起来</h2><p>消息传递，存储和流处理的组合看似反常，但对于Kafka作为流式处理平台的作用至关重要。</p>
+<p>像HDFS这样的分布式文件系统允许存储静态文件来进行批处理。这样系统可以有效地存储和处理来自过去的历史数据。</p>
+<p>传统企业的消息系统允许在你订阅之后处理未来的消息：在未来数据到达时处理它。</p>
+<p>Kafka结合了这两种能力，这种组合对于kafka作为流处理应用和流数据管道平台是至关重要的。</p>
+<p>批处理以及消息驱动应用程序的流处理的概念：通过组合存储和低延迟订阅，流处理应用可以用相同的方式对待过去和未来的数据。它是一个单一的应用程序，它可以处理历史的存储数据，当它处理到最后一个消息时，它进入等待未来的数据到达，而不是结束。</p>
+<p>同样，对于流数据管道（pipeline），订阅实时事件的组合使得可以将Kafka用于非常低延迟的管道；但是，可靠地存储数据的能力使得它可以将其用于必须保证传递的关键数据，或与仅定期加载数据或长时间维护的离线系统集成在一起。流处理可以在数据到达时转换它。</p>
 
       
 
