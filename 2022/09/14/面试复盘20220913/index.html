@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fwq7.github.io">
-  <title>Category: 数据库 | Study7</title>
+  <title>菲耐得初面20220913 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个个人博客,java，学习，编程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Study7">
-<meta property="og:url" content="https://fwq7.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+  <meta name="description" content="面试-202209131.自我介绍2.目前公司规模3.离职原因4.技术面 用过项目管理工具没有？（测试问题跟踪反馈等系统使用，如禅道）  开发工具idea快捷键 文件查找(ctrl+shift+f、两下shift、ctrl+f)、格式化(ctrl+alt+L)  使用idea创建过项目吗？都是什么类型的项目？ 使用过，maven项目， 那如果是一个内部的jar，你要怎么去引入呢？ 手动的去建目录然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="菲耐得初面20220913">
+<meta property="og:url" content="https://fwq7.github.io/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/index.html">
 <meta property="og:site_name" content="Study7">
-<meta property="og:description" content="这是一个个人博客,java，学习，编程">
+<meta property="og:description" content="面试-202209131.自我介绍2.目前公司规模3.离职原因4.技术面 用过项目管理工具没有？（测试问题跟踪反馈等系统使用，如禅道）  开发工具idea快捷键 文件查找(ctrl+shift+f、两下shift、ctrl+f)、格式化(ctrl+alt+L)  使用idea创建过项目吗？都是什么类型的项目？ 使用过，maven项目， 那如果是一个内部的jar，你要怎么去引入呢？ 手动的去建目录然">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-14T14:37:08.000Z">
+<meta property="article:modified_time" content="2022-09-14T15:02:51.359Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="java">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
@@ -163,266 +166,240 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-面试复盘20220913" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      菲耐得初面20220913
+    </h1>
+  
+
+        
+        <a href="/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/" class="archive-article-date">
+  	<time datetime="2022-09-14T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-14</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="面试-20220913"><a href="#面试-20220913" class="headerlink" title="面试-20220913"></a>面试-20220913</h1><h2 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1.自我介绍"></a>1.自我介绍</h2><h2 id="2-目前公司规模"><a href="#2-目前公司规模" class="headerlink" title="2.目前公司规模"></a>2.目前公司规模</h2><h2 id="3-离职原因"><a href="#3-离职原因" class="headerlink" title="3.离职原因"></a>3.离职原因</h2><h2 id="4-技术面"><a href="#4-技术面" class="headerlink" title="4.技术面"></a>4.技术面</h2><ol>
+<li><p>用过项目管理工具没有？（测试问题跟踪反馈等系统使用，如禅道）</p>
+</li>
+<li><p>开发工具idea快捷键</p>
+<p>文件查找(ctrl+shift+f、两下shift、ctrl+f)、格式化(ctrl+alt+L)</p>
+</li>
+<li><p>使用idea创建过项目吗？都是什么类型的项目？</p>
+<p>使用过，maven项目，</p>
+<p>那如果是一个内部的jar，你要怎么去引入呢？</p>
+<p>手动的去建目录然后把jar放到本地仓库。</p>
+<p>正确回答：</p>
+<p>方法一：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">mvn install 指定jar位置和DgroupId、artifactId、version 去加到本地仓库</span></span><br><span class="line">mvn install:install-file -Dfile=jar包的位置(参数一) -DgroupId=groupId(参数二) -DartifactId=artifactId(参数三) -Dversion=version(参数四) -Dpackaging=jar</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<p>maven和lib组合使用</p>
+<p>1.在项目中手动加lib文件，上传jar，标记成库文件</p>
+<p>2.再去pom文件配置<compilerArguments>指定对应的lib文件目录</compilerArguments></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">compilerArguments</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">extdirs</span>&gt;</span>$&#123;project.basedir&#125;/src/main/webapp/WEB-INF/lib<span class="tag">&lt;/<span class="name">extdirs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">compilerArguments</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>springboot怎么配置多环境</p>
+<p>创建主配置文件application.properties、application-dev.properties开发环境配置文件、application-prod.properties生产环境配置文件，再主配置文件中写<strong>spring.profiles.active</strong> 来指定环境，等于prod是生产环境，等于dev是开发环境。</p>
+</li>
+<li><p>部署jar时怎么指定环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xxx.jar --spring.profiles.active=prod</span><br></pre></td></tr></table></figure></li>
+<li><p>linux 怎么查看日志</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">cat 和 tail</span></span><br></pre></td></tr></table></figure></li>
+<li><p>linux查看进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br></pre></td></tr></table></figure></li>
+<li><p>String判断空怎么判断</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a = &quot;aaa&quot;;</span><br><span class="line">&quot;&quot;.equals(a);</span><br><span class="line">用常量的equals去判断变量a,如果a是null的话，调用equals会空指针异常。</span><br></pre></td></tr></table></figure></li>
+<li><p>java8了解吗？</p>
+<p>了解：Lambda和Stream流处理</p>
+<p>说说Stream怎么把列表转换成map?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</span><br><span class="line">Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象</span><br><span class="line">提供了很多api,方便我们去对数据进行操作转换处理。</span><br></pre></td></tr></table></figure></li>
+<li><p>数据库持久层用的什么框架？</p>
+<p>mybatis</p>
+<p>在xml中怎么使用公共的sql片段？</p>
+<p>使用sql标签定义公共片段，然后使用include标签去引用</p>
+</li>
+<li><p>使用数据库创建过表吗？除了定义字段长度，这些还有什么需要定义？</p>
+<p>字段的备注、主键、自增、非空等，后续索引的创建等</p>
+</li>
+<li><p>git和svn的区别</p>
+<p>git是分布式架构的，svn是集中化的版本控制系统</p>
+<p>再提交之前需要什么操作？</p>
+<p>先更新再提交</p>
+</li>
+<li><p>让你做一个增删改查，你的思路？</p>
+</li>
+</ol>
+<h2 id="5-问答关节"><a href="#5-问答关节" class="headerlink" title="5.问答关节"></a>5.问答关节</h2><p>1.目前所在城市</p>
+<p>2.最快什么时候到岗</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/" class="archive-article-date">
-  	<time datetime="2021-07-30T14:24:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/30/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-04/">Oracle学习笔记-04</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
+        			<a href="/categories/面试/java//" class="article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://fwq7.github.io/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/" class="archive-article-date">
-  	<time datetime="2021-07-29T09:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/09/13/Kafka%20%E5%90%AF%E5%8A%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kafka入门-基础慨念</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/29/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-03/">Oracle学习笔记-03</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/" class="archive-article-date">
-  	<time datetime="2021-07-28T12:14:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/28/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02/">Oracle学习笔记-02</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/07/27/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/" class="archive-article-date">
-  	<time datetime="2021-07-27T14:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/07/27/Oracle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01/">Oracle学习笔记-01</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据库/Oracle//" class="article-tag-list-link color2">Oracle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -445,10 +422,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

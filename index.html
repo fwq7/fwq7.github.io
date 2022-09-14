@@ -165,6 +165,153 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-面试复盘20220913" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/">菲耐得初面20220913</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/" class="archive-article-date">
+  	<time datetime="2022-09-14T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-14</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="面试-20220913"><a href="#面试-20220913" class="headerlink" title="面试-20220913"></a>面试-20220913</h1><h2 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1.自我介绍"></a>1.自我介绍</h2><h2 id="2-目前公司规模"><a href="#2-目前公司规模" class="headerlink" title="2.目前公司规模"></a>2.目前公司规模</h2><h2 id="3-离职原因"><a href="#3-离职原因" class="headerlink" title="3.离职原因"></a>3.离职原因</h2><h2 id="4-技术面"><a href="#4-技术面" class="headerlink" title="4.技术面"></a>4.技术面</h2><ol>
+<li><p>用过项目管理工具没有？（测试问题跟踪反馈等系统使用，如禅道）</p>
+</li>
+<li><p>开发工具idea快捷键</p>
+<p>文件查找(ctrl+shift+f、两下shift、ctrl+f)、格式化(ctrl+alt+L)</p>
+</li>
+<li><p>使用idea创建过项目吗？都是什么类型的项目？</p>
+<p>使用过，maven项目，</p>
+<p>那如果是一个内部的jar，你要怎么去引入呢？</p>
+<p>手动的去建目录然后把jar放到本地仓库。</p>
+<p>正确回答：</p>
+<p>方法一：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">mvn install 指定jar位置和DgroupId、artifactId、version 去加到本地仓库</span></span><br><span class="line">mvn install:install-file -Dfile=jar包的位置(参数一) -DgroupId=groupId(参数二) -DartifactId=artifactId(参数三) -Dversion=version(参数四) -Dpackaging=jar</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<p>maven和lib组合使用</p>
+<p>1.在项目中手动加lib文件，上传jar，标记成库文件</p>
+<p>2.再去pom文件配置<compilerArguments>指定对应的lib文件目录</compilerArguments></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">encoding</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">compilerArguments</span>&gt;</span></span><br><span class="line">                   <span class="tag">&lt;<span class="name">extdirs</span>&gt;</span>$&#123;project.basedir&#125;/src/main/webapp/WEB-INF/lib<span class="tag">&lt;/<span class="name">extdirs</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">compilerArguments</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>springboot怎么配置多环境</p>
+<p>创建主配置文件application.properties、application-dev.properties开发环境配置文件、application-prod.properties生产环境配置文件，再主配置文件中写<strong>spring.profiles.active</strong> 来指定环境，等于prod是生产环境，等于dev是开发环境。</p>
+</li>
+<li><p>部署jar时怎么指定环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xxx.jar --spring.profiles.active=prod</span><br></pre></td></tr></table></figure></li>
+<li><p>linux 怎么查看日志</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">cat 和 tail</span></span><br></pre></td></tr></table></figure></li>
+<li><p>linux查看进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br></pre></td></tr></table></figure></li>
+<li><p>String判断空怎么判断</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a = &quot;aaa&quot;;</span><br><span class="line">&quot;&quot;.equals(a);</span><br><span class="line">用常量的equals去判断变量a,如果a是null的话，调用equals会空指针异常。</span><br></pre></td></tr></table></figure></li>
+<li><p>java8了解吗？</p>
+<p>了解：Lambda和Stream流处理</p>
+<p>说说Stream怎么把列表转换成map?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。</span><br><span class="line">Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象</span><br><span class="line">提供了很多api,方便我们去对数据进行操作转换处理。</span><br></pre></td></tr></table></figure></li>
+<li><p>数据库持久层用的什么框架？</p>
+<p>mybatis</p>
+<p>在xml中怎么使用公共的sql片段？</p>
+<p>使用sql标签定义公共片段，然后使用include标签去引用</p>
+</li>
+<li><p>使用数据库创建过表吗？除了定义字段长度，这些还有什么需要定义？</p>
+<p>字段的备注、主键、自增、非空等，后续索引的创建等</p>
+</li>
+<li><p>git和svn的区别</p>
+<p>git是分布式架构的，svn是集中化的版本控制系统</p>
+<p>再提交之前需要什么操作？</p>
+<p>先更新再提交</p>
+</li>
+<li><p>让你做一个增删改查，你的思路？</p>
+</li>
+</ol>
+<h2 id="5-问答关节"><a href="#5-问答关节" class="headerlink" title="5.问答关节"></a>5.问答关节</h2><p>1.目前所在城市</p>
+<p>2.最快什么时候到岗</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/面试/java//" class="article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Kafka 启动" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1086,240 +1233,6 @@
 
 
   
-    <article id="post-工作日志" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">工作日志</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" class="archive-article-date">
-  	<time datetime="2021-08-03T14:35:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-		
-	<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="工作日志"><a href="#工作日志" class="headerlink" title="工作日志"></a>工作日志</h1><h2 id="2021-08-02"><a href="#2021-08-02" class="headerlink" title="2021-08-02"></a>2021-08-02</h2><ol>
-<li><p>oracle查询练习，user_door_input表查询员工上班外出记录</p>
-</li>
-<li><p>了解BI</p>
-</li>
-</ol>
-<h2 id="2021-08-03"><a href="#2021-08-03" class="headerlink" title="2021-08-03"></a>2021-08-03</h2><ol>
-<li>安装FineReport软件</li>
-<li>学习FineReport帮助文档</li>
-<li>了解FineReport软件的操作和报表的制作流程</li>
-</ol>
-<h2 id="2021-08-04"><a href="#2021-08-04" class="headerlink" title="2021-08-04"></a>2021-08-04</h2><ol>
-<li><p>了解数据集</p>
-</li>
-<li><p>了解单元格属性（单元格元素、扩展等）</p>
-</li>
-<li><p>父子格概念</p>
-<ul>
-<li>父子格：用来描述父格与子格关系，父格是指对子格有牵引作用的单元格</li>
-<li>关系：<strong>子格的扩展属性会随着父格的扩展属性变化</strong>，主要包括<strong>过滤</strong>关系和<strong>跟随</strong>关系</li>
-</ul>
-<p>当单元格左侧或上方相邻的单元格具有扩展属性时，单元格默认其左侧相邻单元格为其左父格，默认上方相邻的单元格为其上父格</p>
-</li>
-<li><p>列表、分组、汇总概念的理解</p>
-</li>
-<li><p>SALES_BASIC练习，体会扩展、父子格、分组、汇总</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/SALES_BASIC%E7%BB%83%E4%B9%A0.png"></p>
-</li>
-<li><p>多源报表练习</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%A4%9A%E6%BA%90%E6%8A%A5%E8%A1%A8%E7%BB%83%E4%B9%A0.png"></p>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
-<li><p>上部分是供应商信息（供应商数据集）、下面是供应商的产品信息（供应商产品数据集）</p>
-</li>
-<li><p>根据供应商产生分页效果（A1设置单元格行前分页）</p>
-</li>
-<li><p>根据供应商生成重复的表头（如A1、A3、C3、A5-E5、A7）：所有的字段都以供应商字段（B3）为左父格），下面的表又默认以产品类型（A6）为父格，所以下面的信息只需要设置产品类型的父格（B6-E6默认跟随A6）</p>
-</li>
-<li><p>产品类型字段要过滤与供应商关联（供应商产品数据集的供应商字段=供应商数据集的供应商字段）</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%A4%9A%E6%BA%90%E6%8A%A5%E8%A1%A8%E7%BB%83%E4%B9%A0_result.png"></p>
-</li>
-</ol>
-</li>
-<li><p>设计途中遇到的两个问题</p>
-<ul>
-<li><p>设计的报表有时会分裂</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg1.png"></p>
-<p>如图点击箭头的地方，蓝色框框要是选中我们的报表模板，红色圈住的地方是之前编辑过留下的格式他会占据报表的格式，所以最终会显示出错。只需要把报表模板以外的单元格右键清除全部即可</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg2.png"></p>
-</li>
-<li><p>在设置模板参数时，参数的名字要和sql语句中的参数对应。</p>
-<p>cno要与sql里的参数cno对应</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg4.png"></p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/eg3.png"></p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="2021-08-05"><a href="#2021-08-05" class="headerlink" title="2021-08-05"></a>2021-08-05</h2><ol>
-<li><p>混合图表练习</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E6%B7%B7%E5%90%88%E5%9B%BE%E8%A1%A8%E7%BB%83%E4%B9%A0.png"></p>
-<ul>
-<li><p>数据集（根据年份和订购日期分组，统计订单数量、已支付订单数量和销量，然后根据订购日期排序）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	A.订单id,</span><br><span class="line">	strftime(<span class="string">&#x27;%Y&#x27;</span>,订购日期) <span class="keyword">as</span> 年份,</span><br><span class="line">	strftime(<span class="string">&#x27;%Y-%m&#x27;</span>,订购日期) <span class="keyword">as</span> 日期,</span><br><span class="line">	<span class="built_in">count</span>(A.订单ID) <span class="keyword">as</span> 订单数量,</span><br><span class="line">	<span class="built_in">sum</span>(<span class="keyword">case</span> <span class="keyword">when</span> A.是否已付 <span class="operator">=</span> <span class="string">&#x27;true&#x27;</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="keyword">as</span> 已付订单数量,</span><br><span class="line">	<span class="built_in">sum</span>(B.单价<span class="operator">*</span>B.数量) <span class="keyword">as</span> 月销量</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	订单 A </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> </span><br><span class="line">	订单明细 B </span><br><span class="line"><span class="keyword">ON</span> A.订单id<span class="operator">=</span>B.订单id</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> </span><br><span class="line">	strftime(<span class="string">&#x27;%Y&#x27;</span>,订购日期),</span><br><span class="line">	strftime(<span class="string">&#x27;%Y-%m&#x27;</span>,订购日期)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span></span><br><span class="line">	strftime(<span class="string">&#x27;%Y-%m&#x27;</span>,订购日期)</span><br></pre></td></tr></table></figure></li>
-<li><p>参数设置为年份，数据集根据年份进行过滤</p>
-</li>
-<li><p>插入组合图标（柱形图-折线图），分类字段为年份，系类为订单数量、已付订单数量、月销量</p>
-</li>
-<li><p>问题</p>
-<p>订单数量为十位级，月销量数量为万位级别，订单数量采用了月销量万位级别的坐标轴，所以订单数量的柱形显示根本看不出效果。</p>
-</li>
-<li><p>解决</p>
-<p>点击表格，选择<strong>样式</strong>里面的<strong>系列</strong>标签，在堆积和坐标轴里面点击添加</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E6%B7%B7%E5%90%88%E5%9B%BE%E8%A1%A8%E7%BB%83%E4%B9%A02.png"></p>
-<p>上面的配置就是把 系列1的y坐标轴配置为y2</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E6%B7%B7%E5%90%88%E5%9B%BE%E8%A1%A8%E7%BB%83%E4%B9%A03.png"></p>
-<p><a target="_blank" rel="noopener" href="https://help.fanruan.com/finereport/doc-view-1266.html">具体操作可以看这里</a></p>
-</li>
-</ul>
-</li>
-<li><p>图表超连接练习</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%9B%BE%E8%A1%A8%E8%B6%85%E9%93%BE%E6%8E%A5%E7%BB%83%E4%B9%A0.png"></p>
-<ul>
-<li><p>本质：就是两个cpt文件，在父文件中设置超链接到子文件。</p>
-</li>
-<li><p>操作：点击图表，特效标签下面交互属性里面的添加连接按钮</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%9B%BE%E8%A1%A8%E8%B6%85%E9%93%BE%E6%8E%A5%E7%BB%83%E4%B9%A02.png"></p>
-</li>
-</ul>
-<p>子文件图表数据集以班级（cno）为参数，=SERIES：父文件图表的系列名</p>
-<h2 id="2021-08-06"><a href="#2021-08-06" class="headerlink" title="2021-08-06"></a>2021-08-06</h2><h3 id="填报"><a href="#填报" class="headerlink" title="填报"></a>填报</h3><ol>
-<li><p>简介</p>
-<p>填报功能可以将<strong>页面数据写入到数据库</strong>，包括<strong>数据的增加、删除和修改操作</strong>。同时也支持对填写数据的自定义校验，excel导入数据，根据填写值智能联动等功能。 </p>
-</li>
-<li><p>流程</p>
-<ul>
-<li>报表设计：与普通报表一样，但是用户可以在预览界面对数据进行增删改</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>添加填报控件：为单元格设置控件，用户可以操作单元格数据<ul>
-<li>设置填报属性：将单元格与数据库字段进行绑定，控制Web段录入数据与数据库字段一致</li>
-</ul>
-</li>
-<li>设置填报页面：用户可以自定义填报页面的展示效果，按需求配置工具栏，添加填报事件等</li>
-</ul>
-<ol start="3">
-<li><p>填报控件</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%A1%AB%E6%8A%A5%E6%8E%A7%E4%BB%B6.png"></p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%A1%AB%E6%8A%A5%E6%8E%A7%E4%BB%B62.png"></p>
-</li>
-<li><p>填报属性</p>
-<ul>
-<li> 提交设置</li>
-</ul>
-<p>  填报数据的单元格与数据库表字段进行绑定 </p>
-<ul>
-<li><p>数据校验设置</p>
-<p>提交数据时根据定义的规则对数据进行全局校验。前端填报点击数据校验或提交时，如果有不满足校验规则的数据，则弹出报错信息，且提交终止 </p>
-</li>
-<li><p>填报快捷键设置 </p>
-<p>设置填报预览时，控制光标移动的快捷键 </p>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="2021-08-09"><a href="#2021-08-09" class="headerlink" title="2021-08-09"></a>2021-08-09</h2><h3 id="决策报表入门"><a href="#决策报表入门" class="headerlink" title="决策报表入门"></a>决策报表入门</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>​    相比较普通报表和聚合报表，决策报表包含二者所拥有的基础组件，同时组件添加更自由化，允许用户根据自己的需求构建报表的框架，在报表中添加丰富的元素。 简单说就是<strong>将报表进行分块、组件化开发，每个块进行独立开发不会影响其他组件，并且可以进行复用，很像Vue的组件</strong>。</p>
-<h4 id="设计步骤"><a href="#设计步骤" class="headerlink" title="设计步骤"></a>设计步骤</h4><ol>
-<li>新建表单：选择决策报表</li>
-<li>新建数据源</li>
-<li>拖拽组件： 从参数面板、空白块（报表块、Tab 块、绝对画布块） 、图表块、控件面板中选择想要的组件拖拽到画布式设计主体中</li>
-<li>设计组件： 对组件的内容和属性进行设计，包括组件的类型、数据、样式、特效等 </li>
-<li>报表预览</li>
-</ol>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%86%B3%E7%AD%96%E6%8A%A5%E8%A1%A81.png"></p>
-<p>如图，这张报表可以分为红色框中的几块，红色框中的内容相对独立，有图表块、报表块等组件最终构成这张决策报表。</p>
-<h4 id="决策报表Body"><a href="#决策报表Body" class="headerlink" title="决策报表Body"></a>决策报表Body</h4><p>​    Body是决策报表特有的属性，Body 是承载组件的一个主框架（不包括参数面板组件），除了可对其设置样式、内边距之外，还可以对布局方式进行设置 。这里的body类似html的body标签。</p>
-<h5 id="布局方式"><a href="#布局方式" class="headerlink" title="布局方式"></a>布局方式</h5><ul>
-<li><p>自适应布局</p>
-<p>​    自适应布局会将页面中的所有组件铺满整个 body。新增一个组件时，body 会调整组件的长宽，使其和其他组件重新铺满整个 body 。</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%86%B3%E7%AD%96%E6%8A%A5%E8%A1%A82.gif"></p>
-<p> 双向自适应：决策报表在 Web 端预览时根据浏览器窗体大小自适应充满区域展示，双向都不会出现滚动条。 </p>
-<p>横向自适应： 决策报表在 Web 端预览时按 body 初始宽高比调整大小，以横向调整为主，横向始终不出现滚动条 。</p>
-<p><img src="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/%E5%86%B3%E7%AD%96%E6%8A%A5%E8%A1%A83.png"></p>
-</li>
-<li><p>绝对布局</p>
-<p>​    允许组件随意放置，只要组件在 body 中即可，所有组件不会铺满整个 body，改变一个组件的高宽，其他组件的宽高不会受影响。 </p>
-<p>​    当 body 布局方式选择「绝对布局」时，会出现「缩放逻辑」按钮，设置缩放逻辑。缩放逻辑有「固定大小」和「适应区域」 </p>
-<p>适应区域： 决策报表在 Web 端预览时，根据浏览器窗体大小进行调整，自适应充满区域展示。</p>
-<p>固定大小： 决策报表在 Web 端预览时，不根据浏览器窗体大小进行调整，双向都有可能出现滚动条。 </p>
-</li>
-</ul>
-<h5 id="决策报表组件的基本操作、样式设置"><a href="#决策报表组件的基本操作、样式设置" class="headerlink" title="决策报表组件的基本操作、样式设置"></a>决策报表组件的基本操作、样式设置</h5><h5 id="决策报表入门案例实操"><a href="#决策报表入门案例实操" class="headerlink" title="决策报表入门案例实操"></a>决策报表入门案例实操</h5><h2 id="2021-08-10"><a href="#2021-08-10" class="headerlink" title="2021-08-10"></a>2021-08-10</h2><h3 id="组件复用了解"><a href="#组件复用了解" class="headerlink" title="组件复用了解"></a>组件复用了解</h3><h3 id="组件样式学习"><a href="#组件样式学习" class="headerlink" title="组件样式学习"></a>组件样式学习</h3><h3 id="决策报表自主查询"><a href="#决策报表自主查询" class="headerlink" title="决策报表自主查询"></a>决策报表自主查询</h3><p>​    在参数界面选择好参数之后，无需点击查询按钮 。</p>
-<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>​    可以给参数面板中的控件添加 JS 事件，实现控件选择或编辑值后查询数据，呈现报表。 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_g().parameterCommit();</span><br></pre></td></tr></table></figure>
-
-<h3 id="决策报表之大屏页面美化练习"><a href="#决策报表之大屏页面美化练习" class="headerlink" title="决策报表之大屏页面美化练习"></a>决策报表之大屏页面美化练习</h3></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作日志//" class="article-tag-list-link color5">工作日志</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/03/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1494,6 +1407,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
