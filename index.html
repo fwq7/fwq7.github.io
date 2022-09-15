@@ -165,6 +165,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-kettle-异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/">kettle缓存问题</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/" class="archive-article-date">
+  	<time datetime="2022-09-15T12:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-15</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="kettle缓存问题"><a href="#kettle缓存问题" class="headerlink" title="kettle缓存问题"></a>kettle缓存问题</h1><h2 id="1-kettle-出现job异常"><a href="#1-kettle-出现job异常" class="headerlink" title="1.kettle 出现job异常"></a>1.kettle 出现job异常</h2><p><img src="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png" alt="image-20220915090213493"></p>
+<h2 id="2-原因"><a href="#2-原因" class="headerlink" title="2.原因"></a>2.原因</h2><ol>
+<li><p>windows环境kettle后会在c盘的用户下生成.kettle的文件夹，里面的db.cache-7.1.0.0-12文件保存了对应的缓存数据，主要包括共享数据库链接数据及转换和作业更新的缓存数据。kettle启动和定时任务启动都会先读取缓存加快加载速度，但是这也经常造成kettle程序不能运行，定时任务运行失败</p>
+</li>
+<li><p>linuxx下的话，该文件在root/.kettle目录下面</p>
+<p><img src="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/kettle%E5%BC%82%E5%B8%B8%E5%9B%BE2.png" alt="kettle异常图2"></p>
+</li>
+</ol>
+<h2 id="3-解决"><a href="#3-解决" class="headerlink" title="3.解决"></a>3.解决</h2><p>删除该文件后就可以正常运行了。该文件在运行一段时间后会再次生成。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kettle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/kettle//" class="article-tag-list-link color2">kettle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-面试复盘20220913" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1066,144 +1162,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/09/12/kettle%E5%85%A5%E9%97%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-BI-FineReport入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/">BI-FineReport入门</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2021-08-03T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-		
-	<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="FineReport入门"><a href="#FineReport入门" class="headerlink" title="FineReport入门"></a>FineReport入门</h1><h2 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h2><pre><code> FineReport 是帆软自主研发的企业级 Web 报表工具 ，通过简单的拖拽操作便可制作中国式复杂报表，轻松实现报表的多样化展示、交互分析、数据录入、权限管理、定时调度、打印输出、门户管理和移动应用等需求。 
-</code></pre>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p><img src="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/Snipaste_2021-08-03_23-05-26.png"></p>
-<h2 id="设计器介绍"><a href="#设计器介绍" class="headerlink" title="设计器介绍"></a>设计器介绍</h2><p><img src="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/Snipaste_2021-08-03_23-11-14.png"></p>
-<h2 id="设计步骤"><a href="#设计步骤" class="headerlink" title="设计步骤"></a>设计步骤</h2><ol>
-<li>新建数据连接<ul>
-<li>内置数据库</li>
-<li>外置数据库</li>
-</ul>
-</li>
-<li>新建报表<ul>
-<li>普通报表</li>
-<li>决策报表</li>
-<li>聚合表表</li>
-</ul>
-</li>
-<li>新建数据集<ul>
-<li>薄板数据集</li>
-<li>服务器数据集</li>
-</ul>
-</li>
-<li>报表设计<ul>
-<li>样式设计</li>
-<li>数据绑定</li>
-<li>属性设置</li>
-<li>参数设置</li>
-<li>图标设置</li>
-</ul>
-</li>
-<li>报表预览<ul>
-<li>分页预览</li>
-<li>填报预览</li>
-<li>数据分析</li>
-<li>新填报预览</li>
-<li>移动端预览</li>
-<li>决策报表预览</li>
-</ul>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">FineReport</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">报表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/BI//" class="article-tag-list-link color3">BI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/BI/FineReport//" class="article-tag-list-link color1">FineReport</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/03/BI-FineReport%E5%85%A5%E9%97%A8/">展开全文 >></a>
         </p>
       
 
