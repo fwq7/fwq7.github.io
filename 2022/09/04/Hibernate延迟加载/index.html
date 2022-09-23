@@ -15,16 +15,16 @@
 <meta property="og:site_name" content="Study7">
 <meta property="og:description" content="Hibernate延迟加载1.作用使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。 在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。 延迟加载：当我们查询客户信息，没有">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png">
-<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png">
-<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png">
+<meta property="og:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png">
 <meta property="article:published_time" content="2022-09-04T14:47:29.000Z">
-<meta property="article:modified_time" content="2022-09-07T15:19:23.324Z">
+<meta property="article:modified_time" content="2022-09-23T12:37:19.674Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="hibernate">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png">
+<meta name="twitter:image" content="https://fwq7.github.io/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
   
@@ -211,17 +211,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">import com.fwq.entity.Cust_Type;</span><br><span class="line">import org.hibernate.Session;</span><br><span class="line">import org.hibernate.SessionFactory;</span><br><span class="line">import org.hibernate.cfg.Configuration;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 懒加载测试</span><br><span class="line"> * @author fwq</span><br><span class="line"> * @date 2022年09月04日20:28</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Test5 &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Configuration configuration &#x3D; new Configuration().configure();</span><br><span class="line">        SessionFactory sessionFactory &#x3D; configuration.buildSessionFactory();</span><br><span class="line">        Session session &#x3D; sessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 使用前面一对多的例子演示 懒加载  客户型号与客户 是一对多关系</span><br><span class="line">        &#x2F;&#x2F; 现在查询出 客户型号是9 的客户型号</span><br><span class="line"></span><br><span class="line">        Cust_Type cust_type &#x3D; session.get(Cust_Type.class, 9);</span><br><span class="line">        System.out.println(cust_type);</span><br><span class="line"></span><br><span class="line">        session.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Bug 出现栈内存溢出问题</p>
-<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png"></p>
+<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE1.png"></p>
 <p>这种问题经过发现是，toString()方法的问题，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Cust_Type类：</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;Cust_Type&#123;&quot;</span> +</span><br><span class="line">               <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">               <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">               <span class="string">&quot;, customers=&quot;</span> + customers +</span><br><span class="line">               <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">Customer类</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;Customer&#123;&quot;</span> +</span><br><span class="line">               <span class="string">&quot;id=&quot;</span> + id +</span><br><span class="line">               <span class="string">&quot;, name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">               <span class="string">&quot;, cust_type=&quot;</span> + cust_type +</span><br><span class="line">               <span class="string">&quot;, product=&quot;</span> + product +</span><br><span class="line">               <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
 
 <p>因为Cust_Type和Customer有级联关系，打印cust_type时，里面包含了customer的信息，所以会生成一个Customer对象，然后再去调用Customer的toString方法，同时Customer的toString方法中也有cust_type的信息，此时又会去生成一个Cust_Type对象，所以就形成了死循环导致栈内存溢出了。所以在有级联关系的时候最好不要在toString方法里面包含级联对象信息。</p>
 <p>结果：设置了懒加载后只生成了一条sql语句，访问customer的时候才会生成第二条sql</p>
-<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png"></p>
+<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE2.png"></p>
 <p>关闭懒加载结果：不管怎样都会生成有级联关系的sql</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">set</span> <span class="attr">name</span>=<span class="string">&quot;customers&quot;</span> <span class="attr">lazy</span>=<span class="string">&quot;false&quot;</span> <span class="attr">table</span>=<span class="string">&quot;customer&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">key</span> <span class="attr">column</span>=<span class="string">&quot;cust_type&quot;</span> <span class="attr">not-null</span>=<span class="string">&quot;false&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">one-to-many</span> <span class="attr">class</span>=<span class="string">&quot;com.fwq.entity.Customer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">one-to-many</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%85%A5%E9%97%A8%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png"></p>
+<p><img src="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%5C%E6%87%92%E5%8A%A0%E8%BD%BD%E5%9B%BE3.png"></p>
 <h2 id="3-extra"><a href="#3-extra" class="headerlink" title="3.extra"></a>3.extra</h2><p>lazy除了可以设置ture和false外，还可以设置extra，extra是比true更懒的一种机制。</p>
 <p>true和extra比较</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.fwq.entity.Cust_Type;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Session;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.SessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.cfg.Configuration;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 懒加载测试</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> fwq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2022年09月04日20:28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration().configure();</span><br><span class="line">        SessionFactory sessionFactory = configuration.buildSessionFactory();</span><br><span class="line">        Session session = sessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用前面一对多的例子演示 懒加载  客户型号与客户 是一对多关系</span></span><br><span class="line">        <span class="comment">// 现在查询出 客户型号是9 的客户型号</span></span><br><span class="line"></span><br><span class="line">        Cust_Type cust_type = session.get(Cust_Type.class, <span class="number">9</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 当lazy = true时 查询该型号对应的客户个数时，它查询的数据会封装到一个list，然后通过调用list的size()方法来返回值</span></span><br><span class="line">        <span class="comment">// 当lazy = extra时 查询该型号对应的客户个数时，它直接查询结果个数返回</span></span><br><span class="line">        System.out.println(cust_type.getCustomers().size());</span><br><span class="line"></span><br><span class="line">        session.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -515,7 +515,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">消息中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,6 +555,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kettle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -559,31 +575,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数仓</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ETL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">kettle</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">消息中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
             
             <div class="clearfix"></div>
