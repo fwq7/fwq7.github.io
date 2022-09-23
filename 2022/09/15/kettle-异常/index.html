@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="Study7">
 <meta property="og:description" content="kettle缓存问题1.kettle 出现job异常 2.原因 windows环境kettle后会在c盘的用户下生成.kettle的文件夹，里面的db.cache-7.1.0.0-12文件保存了对应的缓存数据，主要包括共享数据库链接数据及转换和作业更新的缓存数据。kettle启动和定时任务启动都会先读取缓存加快加载速度，但是这也经常造成kettle程序不能运行，定时任务运行失败  linuxx下的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://fwq7.github.io/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png">
-<meta property="og:image" content="https://fwq7.github.io/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/kettle%E5%BC%82%E5%B8%B8%E5%9B%BE2.png">
+<meta property="og:image" content="https://fwq7.github.io/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png">
+<meta property="og:image" content="https://fwq7.github.io/kettle-%E5%BC%82%E5%B8%B8/kettle%E5%BC%82%E5%B8%B8%E5%9B%BE2.png">
 <meta property="article:published_time" content="2022-09-15T12:47:29.000Z">
 <meta property="article:modified_time" content="2022-09-15T11:40:35.148Z">
 <meta property="article:author" content="fwq">
 <meta property="article:tag" content="kettle">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://fwq7.github.io/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png">
+<meta name="twitter:image" content="https://fwq7.github.io/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
   
@@ -191,12 +191,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="kettle缓存问题"><a href="#kettle缓存问题" class="headerlink" title="kettle缓存问题"></a>kettle缓存问题</h1><h2 id="1-kettle-出现job异常"><a href="#1-kettle-出现job异常" class="headerlink" title="1.kettle 出现job异常"></a>1.kettle 出现job异常</h2><p><img src="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png" alt="image-20220915090213493"></p>
+        <h1 id="kettle缓存问题"><a href="#kettle缓存问题" class="headerlink" title="kettle缓存问题"></a>kettle缓存问题</h1><h2 id="1-kettle-出现job异常"><a href="#1-kettle-出现job异常" class="headerlink" title="1.kettle 出现job异常"></a>1.kettle 出现job异常</h2><p><img src="/kettle-%E5%BC%82%E5%B8%B8/image-20220915090213493.png" alt="image-20220915090213493"></p>
 <h2 id="2-原因"><a href="#2-原因" class="headerlink" title="2.原因"></a>2.原因</h2><ol>
 <li><p>windows环境kettle后会在c盘的用户下生成.kettle的文件夹，里面的db.cache-7.1.0.0-12文件保存了对应的缓存数据，主要包括共享数据库链接数据及转换和作业更新的缓存数据。kettle启动和定时任务启动都会先读取缓存加快加载速度，但是这也经常造成kettle程序不能运行，定时任务运行失败</p>
 </li>
 <li><p>linuxx下的话，该文件在root/.kettle目录下面</p>
-<p><img src="/2022/09/15/kettle-%E5%BC%82%E5%B8%B8/kettle%E5%BC%82%E5%B8%B8%E5%9B%BE2.png" alt="kettle异常图2"></p>
+<p><img src="/kettle-%E5%BC%82%E5%B8%B8/kettle%E5%BC%82%E5%B8%B8%E5%9B%BE2.png" alt="kettle异常图2"></p>
 </li>
 </ol>
 <h2 id="3-解决"><a href="#3-解决" class="headerlink" title="3.解决"></a>3.解决</h2><p>删除该文件后就可以正常运行了。该文件在运行一段时间后会再次生成。</p>
@@ -468,11 +468,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
