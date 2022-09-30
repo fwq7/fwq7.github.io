@@ -165,6 +165,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-sql_连续签到领金币" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/30/sql_%E8%BF%9E%E7%BB%AD%E7%AD%BE%E5%88%B0%E9%A2%86%E9%87%91%E5%B8%81/">sql_连续签到领金币</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/30/sql_%E8%BF%9E%E7%BB%AD%E7%AD%BE%E5%88%B0%E9%A2%86%E9%87%91%E5%B8%81/" class="archive-article-date">
+  	<time datetime="2022-09-30T13:06:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-30</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sql-连续签到领金币"><a href="#sql-连续签到领金币" class="headerlink" title="sql_连续签到领金币"></a>sql_连续签到领金币</h1><h2 id="用户行为日志表tb-user-log"><a href="#用户行为日志表tb-user-log" class="headerlink" title="用户行为日志表tb_user_log"></a>用户行为日志表tb_user_log</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">id	uid	artical_id	in_time	out_time	sign_in</span><br><span class="line">1	101	0	2021-07-07 10:00:00	2021-07-07 10:00:09	1</span><br><span class="line">2	101	0   2021-07-08 10:00:00	2021-07-08 10:00:09	1</span><br><span class="line">3	101	0	2021-07-09 10:00:00	2021-07-09 10:00:42	1</span><br><span class="line">4	101	0	2021-07-10 10:00:00 2021-07-10 10:00:09	1</span><br><span class="line">5	101	0   2021-07-11 23:59:55	2021-07-11 23:59:59 1</span><br><span class="line">6   101	0	2021-07-12 10:00:28 2021-07-12 10:00:50 1</span><br><span class="line">7	101	0	2021-07-13 10:00:28 2021-07-13 10:00:50 1</span><br><span class="line">8   102	0	2021-10-01 10:00:28	2021-10-01 10:00:50 1</span><br><span class="line">9   102	0	2021-10-02 10:00:01	2021-10-02 10:01:50 1</span><br><span class="line">10	102	0   2021-10-03 10:00:55	2021-10-03 11:00:59	1</span><br><span class="line">11  102	0   2021-10-04 10:00:45 2021-10-04 11:00:55 0</span><br><span class="line">12	102	0   2021-10-05 10:00:53 2021-10-05 11:00:59 1</span><br><span class="line">13	102	0   2021-10-06 10:00:45 2021-10-06 11:00:55 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="场景逻辑说明："><a href="#场景逻辑说明：" class="headerlink" title="场景逻辑说明："></a>场景逻辑说明：</h2><p>artical_id-文章ID代表用户浏览的文章的ID，特殊情况artical_id-文章ID为0表示用户在非文章内容页（比如App内的列表页、活动页等）。注意：只有artical_id为0时sign_in值才有效。<br>从2021年7月7日0点开始，用户每天签到可以领1金币，并可以开始累积签到天数，连续签到的第3、7天分别可额外领2、6金币。<br>每连续签到7天后重新累积签到天数（即重置签到天数：连续第8天签到时记为新的一轮签到的第一天，领1金币）<br>问题：计算每个用户2021年7月以来每月获得的金币数（该活动到10月底结束，11月1日开始的签到不再获得金币）。结果按月份、ID升序排序。</p>
+<p>注：如果签到记录的in_time-进入时间和out_time-离开时间跨天了，也只记作in_time对应的日期签到了。</p>
+<p>​</p>
+        
+          <a class="article-more-a" href="/2022/09/30/sql_%E8%BF%9E%E7%BB%AD%E7%AD%BE%E5%88%B0%E9%A2%86%E9%87%91%E5%B8%81/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/sql//" class="article-tag-list-link color4">sql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/30/sql_%E8%BF%9E%E7%BB%AD%E7%AD%BE%E5%88%B0%E9%A2%86%E9%87%91%E5%B8%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HashMap源码笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1079,111 +1173,6 @@
 
 
   
-    <article id="post-关于搭建Centos8的一些事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">关于搭建Centos8的一些事</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/" class="archive-article-date">
-  	<time datetime="2021-11-28T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-		
-	<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="关于搭建Centos8的一些事"><a href="#关于搭建Centos8的一些事" class="headerlink" title="关于搭建Centos8的一些事"></a>关于搭建Centos8的一些事</h2><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近打算学习一下Hadoop，所以在VM虚拟机上安装Centos8</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>安装系统没什么难度，但是如何规范、统一的管理是比较有价值的。在安装完成后配置的系统的网络IP时出现了主机无法ping通虚拟机，虚拟机可以ping通主机的问题。</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>因为选择NAT模式来设置网络，所以先配置主机的VMnet8网卡驱动如下</p>
-<p><img src="/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%5Cimage-20211124112450708.png" alt="image-20211124112450708"><br></p>
-        
-          <a class="article-more-a" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">centos8</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Vm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux/centos8//" class="article-tag-list-link color3">centos8</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/28/%E5%85%B3%E4%BA%8E%E6%90%AD%E5%BB%BACentos8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1366,6 +1355,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ETL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
             
             <div class="clearfix"></div>
