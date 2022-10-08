@@ -165,6 +165,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-关于hexo写作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/26/%E5%85%B3%E4%BA%8Ehexo%E5%86%99%E4%BD%9C/">关于hexo写作</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/26/%E5%85%B3%E4%BA%8Ehexo%E5%86%99%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2021-07-26T13:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-26</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-创建"><a href="#1-创建" class="headerlink" title="1.创建"></a>1.创建</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new &lt;title&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new <span class="string">&quot;我的第一篇文章&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-布局"><a href="#2-布局" class="headerlink" title="2.布局"></a>2.布局</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo new page <span class="string">&quot;我的页面&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 布局有三种：post（文章）、draft（草稿）、page（页面）</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-文章的分类和标签"><a href="#3-文章的分类和标签" class="headerlink" title="3.文章的分类和标签"></a>3.文章的分类和标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">title: Word使用开发者工具之VB宏</span><br><span class="line">date: 2021-05-06 21:55:25</span><br><span class="line">categories: </span><br><span class="line">- git</span><br><span class="line">tags: </span><br><span class="line">- VB宏</span><br><span class="line">- Word开发者工具 </span><br><span class="line">-------------------------------------------------------------------</span><br><span class="line">#两级分类</span><br><span class="line">layout:</span><br><span class="line">  - post</span><br><span class="line">title: 测试分类</span><br><span class="line">date: 2021-05-05 23:27:00</span><br><span class="line">categories:</span><br><span class="line">  - Linux</span><br><span class="line">  -  nginx</span><br><span class="line">tags: 测试</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-常用命令"><a href="#4-常用命令" class="headerlink" title="4.常用命令"></a>4.常用命令</h2><ul>
+<li><strong>清除缓存：</strong><code>hexo clean</code></li>
+<li><strong>生成静态文件：</strong><code>hexo generate</code>可简写为 <code>hexo g</code></li>
+<li><strong>启动服务器：</strong><code>hexo server</code>或者 <code>hexo s</code> 常用参数：<code>-p（--port）</code>重设端口</li>
+<li><strong>部署：</strong><code>hexo deploy</code>可简写为<code>hexo d</code>，用于将网站部署到服务器上。（暂时用不到，目前都是在本地，后面我们将博客托管到<code>GitHub Pages</code>或<code>Gitee Pages</code>时才会用到此命令）<br>常用参数：<code>-g（--generate）</code>，<code>hexo d -g</code>部署前预先生成静态文件，等同于 <code>hexo g -d</code></li>
+</ul>
+<p><strong>一般发布文章或者修改博客后需要这些操作：</strong>清除缓存&gt;生成静态文件&gt;启动服务器，测试没问题后再部署。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 我们可以写成一条命令</span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hexo d</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/博客//" class="article-tag-list-link color3">博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/26/%E5%85%B3%E4%BA%8Ehexo%E5%86%99%E4%BD%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Word使用开发者工具之VB宏" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -553,6 +655,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
             
             <div class="clearfix"></div>
