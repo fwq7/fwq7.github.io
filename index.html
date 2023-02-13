@@ -165,6 +165,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-前端打印和图片下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/13/%E5%89%8D%E7%AB%AF%E6%89%93%E5%8D%B0%E5%92%8C%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/">前端打印和图片下载</a>
+    </h1>
+  
+
+        
+        <a href="/2023/02/13/%E5%89%8D%E7%AB%AF%E6%89%93%E5%8D%B0%E5%92%8C%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+  	<time datetime="2023-02-13T13:06:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-13</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前端打印"><a href="#前端打印" class="headerlink" title="前端打印"></a>前端打印</h1><p> 本质还是调用window.print()方法打印 </p>
+<ol>
+<li> 先生成一个新的空白页 </li>
+<li> 往空白页里面写你需要打印的内容 </li>
+<li> 调用空白页window.print() </li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> print_html_str = <span class="string">&#x27;&lt;html&gt;</span></span><br><span class="line"><span class="string">								&lt;head&gt;&lt;/head&gt;</span></span><br><span class="line"><span class="string">								&lt;body&gt;</span></span><br><span class="line"><span class="string">									&lt;p&gt;hello world&lt;/p&gt;</span></span><br><span class="line"><span class="string">								&lt;/body&gt;</span></span><br><span class="line"><span class="string">							&lt;/html&gt;&#x27;</span>;</span><br><span class="line">	 <span class="comment">//创建一个打印窗口 </span></span><br><span class="line">	 <span class="keyword">var</span> printWindow = <span class="built_in">window</span>.open(<span class="string">&quot;打印窗口&quot;</span>,<span class="string">&quot;_blank&quot;</span>);</span><br><span class="line">	 </span><br><span class="line">	 <span class="comment">//填充页面 即打印内容</span></span><br><span class="line">	 printWindow.document.write(print_html_str);</span><br><span class="line">	 </span><br><span class="line">	 <span class="comment">//脚本向窗口(不管是本窗口或其他窗口)写完内容后，必须关闭输出流。在延时脚本的最后一个document.write()方法后面，必须确保含有document.close()方法，不这样做就不能显示图像和表单。</span></span><br><span class="line">     <span class="comment">//并且，任何后面调用的document.write()方法只会把内容追加到页面后，而不会清除现有内容来写入新值。</span></span><br><span class="line">	 printWindow.document.close();</span><br><span class="line">	 <span class="comment">//打印</span></span><br><span class="line">     <span class="comment">//chrome浏览器使用jqprint插件打印时偶尔空白页问题</span></span><br><span class="line">     <span class="comment">//解决方案：有时候页面总是加载不出来，打印出现空白页，可以设置延迟时间来等待页面的渲染，但是渲染时间的长短跟页面的大小有关，是不固定的。所以这里使用事件监听器。</span></span><br><span class="line">	 printWindow.addEventListener(<span class="string">&#x27;load&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		printWindow.print();</span><br><span class="line">		<span class="comment">//关闭窗口</span></span><br><span class="line">		printWindow.close();</span><br><span class="line">	 &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="前端知道图片url怎么下载-批量-？"><a href="#前端知道图片url怎么下载-批量-？" class="headerlink" title="前端知道图片url怎么下载(批量)？"></a>前端知道图片url怎么下载(批量)？</h1><p> 本质调用canvas进行绘制 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; rows.length; i++) &#123;</span><br><span class="line">                </span><br><span class="line">		</span><br><span class="line">		<span class="keyword">var</span> image = <span class="keyword">new</span> Image();</span><br><span class="line">		<span class="comment">// 解决跨域 Canvas 污染问题</span></span><br><span class="line">		<span class="built_in">console</span>.log(row.fileName);</span><br><span class="line">		<span class="keyword">var</span> fileName = row.fileName;</span><br><span class="line">		<span class="keyword">var</span> name = fileName.split(<span class="string">&quot;.&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">		<span class="comment">// var name = namelist[0];</span></span><br><span class="line">		<span class="built_in">console</span>.log(name);</span><br><span class="line">		image.setAttribute(<span class="string">&quot;crossOrigin&quot;</span>, <span class="string">&quot;anonymous&quot;</span>);</span><br><span class="line">		image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">			canvas.width = image.width;</span><br><span class="line">			canvas.height = image.height;</span><br><span class="line">			<span class="keyword">var</span> context = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">			context.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, image.width, image.height);</span><br><span class="line">			<span class="keyword">var</span> url = canvas.toDataURL(<span class="string">&quot;image/png&quot;</span>,<span class="number">0.7</span>); <span class="comment">//得到图片的base64编码数据</span></span><br><span class="line">			<span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>); <span class="comment">// 生成一个a元素</span></span><br><span class="line">			<span class="keyword">var</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&quot;click&quot;</span>); <span class="comment">// 创建一个单击事件</span></span><br><span class="line">			a.download = name?name+<span class="string">&#x27;.png&#x27;</span>:<span class="string">&quot;photo.png&quot;</span>; <span class="comment">// 设置图片名称</span></span><br><span class="line">			a.href = url; <span class="comment">// 将生成的URL设置为a.href属性</span></span><br><span class="line">			a.dispatchEvent(event); <span class="comment">// 触发a的单击事件</span></span><br><span class="line">		&#125;;</span><br><span class="line">		image.src = row.fileLink;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 上面的代码，看似没有问题，但是在测试的时候，传入多张图片的url时，每次下载下来的图片都是最后一张，那么这是上面问题呢？<br>    后面才知道，onload时一个异步函数，异步函数里面用了this，指向的是image，而image被你不停地指向了不同的图片，for循环结束之后自然只会在最后一个canvas生效，或者还有一个思路，你把异步函数写成闭包，然后把this传进异步。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; rows.length; i++) &#123;</span><br><span class="line">                </span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">row</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">var</span> image = <span class="keyword">new</span> Image();</span><br><span class="line">			<span class="comment">// 解决跨域 Canvas 污染问题</span></span><br><span class="line">			<span class="built_in">console</span>.log(row.fileName);</span><br><span class="line">			<span class="keyword">var</span> fileName = row.fileName;</span><br><span class="line">			<span class="keyword">var</span> name = fileName.split(<span class="string">&quot;.&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">			<span class="comment">// var name = namelist[0];</span></span><br><span class="line">			<span class="built_in">console</span>.log(name);</span><br><span class="line">			image.setAttribute(<span class="string">&quot;crossOrigin&quot;</span>, <span class="string">&quot;anonymous&quot;</span>);</span><br><span class="line">			image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">				<span class="keyword">var</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">				canvas.width = image.width;</span><br><span class="line">				canvas.height = image.height;</span><br><span class="line">				<span class="keyword">var</span> context = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">				context.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, image.width, image.height);</span><br><span class="line">				<span class="keyword">var</span> url = canvas.toDataURL(<span class="string">&quot;image/png&quot;</span>,<span class="number">0.7</span>); <span class="comment">//得到图片的base64编码数据</span></span><br><span class="line">				<span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>); <span class="comment">// 生成一个a元素</span></span><br><span class="line">				<span class="keyword">var</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&quot;click&quot;</span>); <span class="comment">// 创建一个单击事件</span></span><br><span class="line">				a.download = name?name+<span class="string">&#x27;.png&#x27;</span>:<span class="string">&quot;photo.png&quot;</span>; <span class="comment">// 设置图片名称</span></span><br><span class="line">				a.href = url; <span class="comment">// 将生成的URL设置为a.href属性</span></span><br><span class="line">				a.dispatchEvent(event); <span class="comment">// 触发a的单击事件</span></span><br><span class="line">			&#125;;</span><br><span class="line">			image.src = row.fileLink;</span><br><span class="line">		&#125;</span><br><span class="line">		f(rows[i]);</span><br><span class="line">               </span><br><span class="line">               </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">打印</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图片下载</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/02/13/%E5%89%8D%E7%AB%AF%E6%89%93%E5%8D%B0%E5%92%8C%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据库事务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1099,102 +1204,6 @@
 
 
   
-    <article id="post-Hibernate延迟加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/">Hibernate延迟加载</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/" class="archive-article-date">
-  	<time datetime="2022-09-04T14:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-04</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-		
-	<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hibernate延迟加载"><a href="#Hibernate延迟加载" class="headerlink" title="Hibernate延迟加载"></a>Hibernate延迟加载</h1><h2 id="1-作用"><a href="#1-作用" class="headerlink" title="1.作用"></a>1.作用</h2><p>使用延迟加载可以提高程序的运行效率，Java程序与数据库交互的的频次越低，程序运行的效率越高，所以我们应该尽量减少Java程序与数据库的交互次数，Hibernate延迟加载就可以很好的做到这一点。</p>
-<p>在客户和订单，当我们查询客户对象时，因为有级联设置，所以会将订单的信息一并查询出来，这样就需要执行两条sql语句，分表查询两个实体。</p>
-<p>延迟加载：当我们查询客户信息，没有访问订单信息时，只会生成一条sql，需要访问到订单信息时，则生成两条sql。</p>
-        
-          <a class="article-more-a" href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hibernate//" class="article-tag-list-link color5">hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/04/Hibernate%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1209,7 +1218,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 fwq
+    		&copy; 2023 fwq
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1308,19 +1317,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">消息中间件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+                <a href="javascript:void(0)" class="js-tag color5">hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1336,10 +1337,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VB宏</a>
               </li>
              
@@ -1348,7 +1345,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">消息中间件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kafka</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">kettle</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1368,7 +1381,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">打印</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图片下载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Selenium</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1377,14 +1402,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ETL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">索引</a>
               </li>
             
             <div class="clearfix"></div>
