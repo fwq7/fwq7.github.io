@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://fwq7.github.io">
-  <title>Category: java | Study7</title>
+  <title>pdf的批量打印和下载 | Study7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个个人博客,java，学习，编程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Study7">
-<meta property="og:url" content="https://fwq7.github.io/categories/%E9%9D%A2%E8%AF%95/java/index.html">
+  <meta name="description" content="pdf的批量打印和下载 最近公司一些关于pdf的批量打印和下载需求，主要是客户上传的税票想批量打印和下载 这里批量打印的思路就是将多个pdf合并成一个pdf返回给前端实现批量打印，批量下载使用的是FileServer这个前端插件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pdf的批量打印和下载">
+<meta property="og:url" content="https://fwq7.github.io/2023/02/24/pdf%E7%9A%84%E6%89%B9%E9%87%8F%E6%89%93%E5%8D%B0%E5%92%8C%E4%B8%8B%E8%BD%BD/index.html">
 <meta property="og:site_name" content="Study7">
-<meta property="og:description" content="这是一个个人博客,java，学习，编程">
+<meta property="og:description" content="pdf的批量打印和下载 最近公司一些关于pdf的批量打印和下载需求，主要是客户上传的税票想批量打印和下载 这里批量打印的思路就是将多个pdf合并成一个pdf返回给前端实现批量打印，批量下载使用的是FileServer这个前端插件。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-24T13:06:29.000Z">
+<meta property="article:modified_time" content="2023-02-24T13:31:07.297Z">
 <meta property="article:author" content="fwq">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="spring异步">
+<meta property="article:tag" content="FileServer.js">
+<meta property="article:tag" content="itext.jar">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Study7" type="application/atom+xml">
@@ -163,79 +167,217 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-pdf的批量打印和下载" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/" class="archive-article-date">
-  	<time datetime="2022-09-14T14:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/09/14/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%9820220913/">菲耐得初面20220913</a>
+    <h1 class="article-title" itemprop="name">
+      pdf的批量打印和下载
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2023/02/24/pdf%E7%9A%84%E6%89%B9%E9%87%8F%E6%89%93%E5%8D%B0%E5%92%8C%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+  	<time datetime="2023-02-24T13:06:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-24</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="pdf的批量打印和下载"><a href="#pdf的批量打印和下载" class="headerlink" title="pdf的批量打印和下载"></a>pdf的批量打印和下载</h1><p> 最近公司一些关于pdf的批量打印和下载需求，主要是客户上传的税票想批量打印和下载</p>
+<p>这里批量打印的思路就是将多个pdf合并成一个pdf返回给前端实现批量打印，批量下载使用的是FileServer这个前端插件。</p>
+<span id="more"></span> 
+
+<h2 id="关于ssh项目异步方法的使用"><a href="#关于ssh项目异步方法的使用" class="headerlink" title="关于ssh项目异步方法的使用"></a>关于ssh项目异步方法的使用</h2><p>因为这里涉及文件的一些操作，在生成合并后的pdf文件后要定时清理，因为打印的pdf文件是临时生成的，所以使用异步线程来延时清理。</p>
+<ol>
+<li><p>创建配置类,开启@EnableAsync,加入bean容器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line">	<span class="meta">@EnableAsync</span></span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncConfig</span> <span class="keyword">extends</span> <span class="title">AsyncConfigurerSupport</span> </span>&#123;</span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> Executor <span class="title">executor</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="comment">//Spring提供的线程池工具类</span></span><br><span class="line">			ThreadPoolTaskExecutor scheduler = <span class="keyword">new</span> 	ThreadPoolTaskExecutor();</span><br><span class="line">			scheduler.setCorePoolSize(<span class="number">5</span>);</span><br><span class="line">			scheduler.setMaxPoolSize(<span class="number">5</span>);</span><br><span class="line">			scheduler.setQueueCapacity(<span class="number">100</span>);</span><br><span class="line">			scheduler.setRejectedExecutionHandler(<span class="keyword">new</span>                  ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line">			scheduler.setThreadNamePrefix(<span class="string">&quot;Custom-Executor-&quot;</span>);</span><br><span class="line">			scheduler.setKeepAliveSeconds(<span class="number">60</span>);</span><br><span class="line">			scheduler.initialize();</span><br><span class="line">			<span class="keyword">return</span> scheduler;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建异步service,再类上加@Async,整个类的方法都是异步方法，加再具体的方法上当前方法为异步方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Async</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncMethod</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(FileManagerServices.class);</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String configFilePath = <span class="string">&quot;/fdfs_client.properties&quot;</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanFileFromFastDSF</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		log.info(<span class="string">&quot;15分钟后删除文件:&quot;</span>+path);</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>*<span class="number">60</span>*<span class="number">15</span>);</span><br><span class="line">		FileManagerUtils fileManager = FileManagerUtils.getInstance(configFilePath);</span><br><span class="line">		fileManager.deleteFileFromFastDSF(<span class="string">&quot;group1&quot;</span>,path);</span><br><span class="line">		log.info(<span class="string">&quot;成功删除文件:&quot;</span>+path);</span><br><span class="line">   </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanLocalFile</span><span class="params">(File file)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   </span><br><span class="line">		log.info(<span class="string">&quot;15分钟后删除文件:&quot;</span>+file.getAbsolutePath());</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>*<span class="number">60</span>*<span class="number">15</span>);</span><br><span class="line">		file.delete();</span><br><span class="line">		log.info(<span class="string">&quot;成功删除文件:&quot;</span>+file.getAbsolutePath());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>测试使用</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">		<span class="meta">@Autowired</span></span><br><span class="line">		<span class="keyword">private</span> AsyncMethod asyncMethod;</span><br><span class="line">		</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">		asyncMethod.cleanFileFromFastDSF(<span class="string">&quot;M00/00/03/wKgQH2PsMLiAIYQZAAIt6ofcgOs590.pdf&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于itext2-1-7操作PDF"><a href="#关于itext2-1-7操作PDF" class="headerlink" title="关于itext2.1.7操作PDF"></a>关于itext2.1.7操作PDF</h2><ol>
+<li><p>导入jar</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.lowagie<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>itext<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>创建工具类 合并多个pdf方法和pdf分割方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PdfUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">mergePdfFiles</span><span class="params">(String[] files, String newfile)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">boolean</span> retValue = <span class="keyword">false</span>;</span><br><span class="line">			Document document = <span class="keyword">null</span>;</span><br><span class="line">			PdfCopy copy = <span class="keyword">null</span>;</span><br><span class="line">			PdfReader reader = <span class="keyword">null</span>;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				document = <span class="keyword">new</span> Document(<span class="keyword">new</span> PdfReader(files[<span class="number">0</span>]).getPageSize(<span class="number">1</span>));</span><br><span class="line">				copy = <span class="keyword">new</span> PdfCopy(document, <span class="keyword">new</span> FileOutputStream(newfile));</span><br><span class="line">				document.open();</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.length; i++) &#123;</span><br><span class="line">					reader = <span class="keyword">new</span> PdfReader(files[i]);</span><br><span class="line">					<span class="keyword">int</span> n = reader.getNumberOfPages();</span><br><span class="line">					<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">						document.newPage();</span><br><span class="line">						PdfImportedPage page = copy.getImportedPage(reader, j);</span><br><span class="line">						copy.addPage(page);</span><br><span class="line">					&#125;</span><br><span class="line">					reader.close();</span><br><span class="line">				&#125;</span><br><span class="line">				retValue = <span class="keyword">true</span>;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> (reader != <span class="keyword">null</span>) &#123;</span><br><span class="line">					reader.close();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (copy != <span class="keyword">null</span>) &#123;</span><br><span class="line">					copy.close();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (document != <span class="keyword">null</span>) &#123;</span><br><span class="line">					document.close();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> retValue;</span><br><span class="line">		&#125;</span><br><span class="line">   		 <span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 截取pdfFile的第最后一页</span></span><br><span class="line"><span class="comment">		 * <span class="doctag">@param</span> respdfFile  需要分割的PDF绝对路径</span></span><br><span class="line"><span class="comment">		 * <span class="doctag">@param</span> savepath  新PDF绝对路径</span></span><br><span class="line"><span class="comment">		 * <span class="doctag">@param</span> from  起始页</span></span><br><span class="line"><span class="comment">		 * <span class="doctag">@param</span> end  结束页</span></span><br><span class="line"><span class="comment">		 **/</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">splitPDFFile</span><span class="params">(String respdfFile, String savepath,<span class="keyword">int</span> end)</span> <span class="keyword">throws</span> DocumentException </span>&#123;</span><br><span class="line">			Document document = <span class="keyword">null</span>;</span><br><span class="line">			PdfCopy copy = <span class="keyword">null</span>;</span><br><span class="line">			<span class="keyword">int</span> from =<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				PdfReader reader = <span class="keyword">new</span> PdfReader(respdfFile);</span><br><span class="line">				<span class="keyword">int</span> n = reader.getNumberOfPages();</span><br><span class="line">				<span class="keyword">if</span>(end==<span class="number">0</span>)&#123;</span><br><span class="line">					end = n;</span><br><span class="line">					from =end;</span><br><span class="line">				&#125;</span><br><span class="line">				ArrayList&lt;String&gt; savepaths = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">				savepaths.add(savepath);</span><br><span class="line">				document = <span class="keyword">new</span> Document(reader.getPageSize(<span class="number">1</span>));</span><br><span class="line">				copy = <span class="keyword">new</span> PdfCopy(document, <span class="keyword">new</span> FileOutputStream(savepaths.get(<span class="number">0</span>)));</span><br><span class="line">				document.open();</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=from; j&lt;=end; j++) &#123;</span><br><span class="line">					document.newPage();</span><br><span class="line">					PdfImportedPage page = copy.getImportedPage(reader, j);</span><br><span class="line">					copy.addPage(page);</span><br><span class="line">				&#125;</span><br><span class="line">				document.close();</span><br><span class="line"></span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; <span class="keyword">catch</span>(DocumentException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="关于前端FileServer插件的使用"><a href="#关于前端FileServer插件的使用" class="headerlink" title="关于前端FileServer插件的使用"></a>关于前端FileServer插件的使用</h2><ol>
+<li><p>把下载好的FileServer放入项目的libs目录</p>
+</li>
+<li><p>页面index.html进行引入(公司使用的angular 1.X版本，不知道怎么导入，所以采用这种方法引入)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;js/libs/FileSaver.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>pdf下载方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> (<span class="params">url,filename</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oReq = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    oReq.open(<span class="string">&quot;GET&quot;</span>, url, <span class="literal">true</span>);</span><br><span class="line">    oReq.responseType = <span class="string">&quot;blob&quot;</span>;</span><br><span class="line">    oReq.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> file = <span class="keyword">new</span> Blob([oReq.response], &#123;</span><br><span class="line">            type: <span class="string">&#x27;application/pdf&#x27;</span></span><br><span class="line">        &#125;);</span><br><span class="line">        saveAs(file, filename);</span><br><span class="line">    &#125;;</span><br><span class="line">    oReq.send();</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">spring异步</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">FileServer.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">itext.jar</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/面试//" class="article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/面试/java//" class="article-tag-list-link color5">java</a>
+        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://fwq7.github.io/2023/02/24/pdf%E7%9A%84%E6%89%B9%E9%87%8F%E6%89%93%E5%8D%B0%E5%92%8C%E4%B8%8B%E8%BD%BD/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2023/02/13/%E5%89%8D%E7%AB%AF%E6%89%93%E5%8D%B0%E5%92%8C%E5%9B%BE%E7%89%87%E4%B8%8B%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端打印和图片下载</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -258,10 +400,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
