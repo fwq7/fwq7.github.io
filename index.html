@@ -165,6 +165,160 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Sql子查询转连接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/23/Sql%E5%AD%90%E6%9F%A5%E8%AF%A2%E8%BD%AC%E8%BF%9E%E6%8E%A5/">Sql子查询转连接</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/23/Sql%E5%AD%90%E6%9F%A5%E8%AF%A2%E8%BD%AC%E8%BF%9E%E6%8E%A5/" class="archive-article-date">
+  	<time datetime="2023-05-23T15:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-23</time>
+</a>
+        
+      </header>
+	  <!-- 目录内容 -->
+		
+	<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Sql子查询转连接"><a href="#Sql子查询转连接" class="headerlink" title="Sql子查询转连接"></a>Sql子查询转连接</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在sql中子查询可以转换为连接的方式，从而提升性能</p>
+<h2 id="数据表"><a href="#数据表" class="headerlink" title="数据表"></a>数据表</h2><p>表A 招聘信息表v_fact_cdc_hire_info_view</p>
+<table>
+<thead>
+<tr>
+<th>工号</th>
+<th>身份证</th>
+<th>姓名</th>
+<th>入职日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0001</td>
+<td>42001019990116045</td>
+<td>张三</td>
+<td>2022-05-01</td>
+</tr>
+<tr>
+<td>0002</td>
+<td>42001019990116066</td>
+<td>李四</td>
+<td>2022-05-06</td>
+</tr>
+</tbody></table>
+<p>表B 员工信息表zb_hr_emp_v</p>
+<table>
+<thead>
+<tr>
+<th>工号</th>
+<th>身份证</th>
+<th>姓名</th>
+<th>入职日期</th>
+<th>离职日期</th>
+<th>职类</th>
+<th>职等</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001</td>
+<td>42001019990116045</td>
+<td>张三</td>
+<td>2022-05-01</td>
+<td>2022-08-09</td>
+<td>OO</td>
+<td>01</td>
+</tr>
+<tr>
+<td>002</td>
+<td>42001019990116066</td>
+<td>李四</td>
+<td>2022-05-06</td>
+<td></td>
+<td>OO</td>
+<td>01</td>
+</tr>
+<tr>
+<td>003</td>
+<td>42001019990116045</td>
+<td>张三</td>
+<td>2023-02-01</td>
+<td></td>
+<td>OO</td>
+<td>02</td>
+</tr>
+</tbody></table>
+        
+          <a class="article-more-a" href="/2023/05/23/Sql%E5%AD%90%E6%9F%A5%E8%AF%A2%E8%BD%AC%E8%BF%9E%E6%8E%A5/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/sql//" class="article-tag-list-link color4">sql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/23/Sql%E5%AD%90%E6%9F%A5%E8%AF%A2%E8%BD%AC%E8%BF%9E%E6%8E%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-pdf的批量打印和下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1123,102 +1277,6 @@
 
 
   
-    <article id="post-kafka入门-基础概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">Kafka入门-基础慨念</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="archive-article-date">
-  	<time datetime="2022-09-06T15:47:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-06</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-		
-	<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Kafka入门-基础慨念"><a href="#Kafka入门-基础慨念" class="headerlink" title="Kafka入门-基础慨念"></a>Kafka入门-基础慨念</h1><p>作者：半兽人<br>链接：<a target="_blank" rel="noopener" href="https://www.orchome.com/5">https://www.orchome.com/5</a><br>来源：OrcHome</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>生产者和消费者，生产者生产鸡蛋，消费者消费鸡蛋，生产者生产一个鸡蛋，消费者就消费一个鸡蛋</p>
-<p>假设消费者消费鸡蛋的时候噎住了（系统宕机了），生产者还在生产鸡蛋，那么对于消费者来说那新生产的<br>鸡蛋就丢失了。<br>    再比如生产者很强劲（大交易量的情况），生产者1秒钟生产100个鸡蛋，消费者1秒钟只能吃50个鸡蛋，<br>那要不了一会，消费者就吃不消了（消息堵塞，最终导致系统超时），消费者拒绝再吃了，”鸡蛋“又丢失了，<br>这个时候我们放个篮子在它们中间，生产出来的鸡蛋都放到篮子里，消费者去篮子里拿鸡蛋，这样鸡蛋就不会<br>丢失了，都在篮子里，而这个篮子就是”kafka“。<br>    鸡蛋其实就是”数据流“，系统之间的交互是通过”数据流“来传输的，就是tcp、https什么的），也称为报文，也叫“消息”。<br></p>
-        
-          <a class="article-more-a" href="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">消息中间件</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/kafka//" class="article-tag-list-link color1">kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/06/kafka%E5%85%A5%E9%97%A8-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1364,6 +1422,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VB宏</a>
               </li>
              
@@ -1385,10 +1447,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">itext.jar</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
